@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -14,7 +15,7 @@ for (let i = 1; i < works.length + 1; i++) {
   }
 }
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Head>
