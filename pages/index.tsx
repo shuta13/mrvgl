@@ -1,8 +1,19 @@
 import Head from "next/head";
 import Link from "next/link";
 
+const works = 10;
+
 const Home = () => {
-  const ids = ["001", "002", "003"];
+  const ids = [];
+  for (let i = 1; i < works + 1; i++) {
+    if (i < 10) {
+      ids.push(`00${i}`);
+    } else if (i >= 10 && i < 100) {
+      ids.push(`0${i}`);
+    } else {
+      ids.push(`${i}`);
+    }
+  }
   return (
     <>
       <Head>
@@ -18,13 +29,17 @@ const Home = () => {
         <meta property="og:image" content="https://did0es.me/static/ogp.jpg" />
       </Head>
 
-      {
-        ids.map((id) => (
-          <Link href="/works/[id]" as={`works/${id}`}>
-            <a key={id}>works - { id }</a>
-          </Link>
-        ))
-      }
+      <ul>
+        {
+          ids.map((id) => (
+            <li key={id}>
+              <Link href="/works/[id]" as={`works/${id}`}>
+                <a>works - { id }</a>
+              </Link>
+            </li>
+          ))
+        }
+      </ul>
     </>
   );
 }
