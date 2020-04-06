@@ -21,7 +21,7 @@ const Home = () => {
       {
         ids.map((id) => (
           <Link href="/works/[id]" as={`works/${id}`}>
-            <a>works - { id }</a>
+            <a key={id}>works - { id }</a>
           </Link>
         ))
       }
