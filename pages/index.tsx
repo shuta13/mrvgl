@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 
-const works = 10;
+import works from "../assets/data/works.json";
+
 const ids: Array<string> = [];
-for (let i = 1; i < works + 1; i++) {
+for (let i = 1; i < works.length + 1; i++) {
   if (i < 10) {
     ids.push(`00${i}`);
   } else if (i >= 10 && i < 100) {
