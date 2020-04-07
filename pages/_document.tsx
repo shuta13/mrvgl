@@ -15,7 +15,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Photon</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content="Photon" />
           <meta property="og:site_name" content="Photon" />

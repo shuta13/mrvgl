@@ -10,13 +10,16 @@ import worksData from "../utils/data/worksInfo.json";
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();
   const isWorks = pathData.name.includes("works");
+  const titleId = `- ${pathData.id}`
   return (
     <>
-      {isWorks && (
-        <Head>
-          <title>Photon - {pathData.id}</title>
-        </Head>
-      )}
+      <Head>
+        {isWorks ? (
+          <title>Photon { titleId }</title>
+        ) : (
+          <title>Photon</title>
+        )}
+      </Head>
       <Component {...pageProps} />
       <Header />
       {isWorks && <Footer pathData={pathData} worksData={worksData} />}
