@@ -1,7 +1,7 @@
 import "../assets/style/global.scss";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
-import { useRouter } from "next/router";
+import Head from "next/head";
 import { Header } from "../components/common/Header";
 import { Footer } from "../components/common/Footer";
 import { useGetPathName } from "../utils/hooks/useGetPathName";
@@ -11,12 +11,20 @@ const MyApp: NextPage<AppProps> = ({
   pageProps
 }) => {
   const pathData = useGetPathName();
+  const isWorks = pathData.name?.includes("works")
   return (
     <>
+      {
+        isWorks && (
+          <Head>
+            <title>Photon - { pathData.id }</title>
+          </Head>
+        )
+      }
       <Component {...pageProps} />
       <Header />
       {
-        pathData.name?.includes("works") && <Footer pathData={pathData} />
+        isWorks && <Footer pathData={pathData} />
       }
     </>
   );
