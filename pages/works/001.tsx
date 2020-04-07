@@ -4,11 +4,9 @@ import { useGetPathName } from "../../utils/hooks/useGetPathName";
 const _001: React.FC = () =>  {
   const pathData = useGetPathName();
   return (
-    <>
-      <div className="container">
-        this is { pathData.name }
-      </div>
-    </>
+    <div className="container">
+      this is { pathData.id }
+    </div>
   );
 };
 
