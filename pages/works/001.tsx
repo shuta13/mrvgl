@@ -2,8 +2,8 @@ import React from "react";
 import { useGetPathName } from "../../utils/hooks/useGetPathName";
 
 const _001: React.FC = () =>  {
-  const num = useGetPathName("num");
-  console.log(num);
+  const data = useGetPathName();
+  console.log(data);
   return (
     <div>
       this is 001
