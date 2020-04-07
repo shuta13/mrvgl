@@ -22,7 +22,7 @@ const Home: React.FC = () => {
           ids.map((id) => (
             <li key={id}>
               <Link href="/works/[id]" as={`works/${id}`}>
-                <a>{ id }</a>
+                <a className="Link">{ id }</a>
               </Link>
             </li>
           ))

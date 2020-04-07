@@ -19,6 +19,7 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta property="og:description" content="Photon" />
           <meta property="og:image" content="https://did0es.me/static/ogp.jpg" />
+          <link href="https://fonts.googleapis.com/css?family=Sarpanch&display=swap" rel="stylesheet"></link>
         </Head>
         <body>
           <Main />
