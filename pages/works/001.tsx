@@ -1,15 +1,13 @@
 import React from "react";
 import { useGetPathName } from "../../utils/hooks/useGetPathName";
-import { Footer } from "../../components/common/Footer";
 
 const _001: React.FC = () =>  {
-  const path = useGetPathName();
+  const pathData = useGetPathName();
   return (
     <>
       <div className="container">
-        this is {path.id}
+        this is { pathData.name }
       </div>
-      <Footer pathData={path} />
     </>
   );
 };

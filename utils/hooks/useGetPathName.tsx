@@ -2,23 +2,25 @@ import { useRouter } from "next/router";
 
 const getPathName = () => {
   const router = useRouter();
-  const pathName = router.pathname;
-  return pathName.substring(pathName.length - 3);
+  return router.pathname;
 };
 
 export const useGetPathName = () => {
-  const pathData: { id: string | null, index: number | null } = {
+  const pathData: { id: string | null, index: number | null, name: string | null } = {
     id: null,
-    index: null
+    index: null,
+    name: null
   };
   const pathName = getPathName();
-  pathData.id = pathName;
+  const id = pathName.substring(pathName.length - 3);
+  pathData.name = pathName;
+  pathData.id = id;
   if (pathName.match("00")) {
-    pathData.index = parseInt(pathName[2]);
+    pathData.index = parseInt(id[2]);
   } else if (pathName[0] === "0") {
-    pathData.index = parseInt(pathName.slice(0));
+    pathData.index = parseInt(id.slice(0));
   } else {
-    pathData.index = parseInt(pathName);
+    pathData.index = parseInt(id);
   }
   return pathData;
 };
