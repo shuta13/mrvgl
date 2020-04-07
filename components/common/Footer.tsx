@@ -1,8 +1,15 @@
 import React from "react";
-import works from "../../utils/data/works.json";
 
-export const Footer: React.FC<{ pathData: { id: string | null, index: number | null, name: string | null } }> = ({pathData}) => {
+export const Footer: React.FC<{
+  pathData: { id: string, index: number, name: string }, worksData: Array<{ name: string, desc: string }>
+}> = ({
+  pathData,
+  worksData
+}) => {
   return (
-    <div className="FooterWrap"></div>
+    <div className="FooterWrap">
+      <p>{ worksData[pathData.index].name }</p>
+      <p>{ worksData[pathData.index].desc }</p>
+    </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import works from "../utils/data/works.json";
+import works from "../utils/data/worksInfo.json";
 
 const ids: Array<string> = [];
 for (let i = 1; i < works.length + 1; i++) {

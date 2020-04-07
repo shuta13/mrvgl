@@ -6,10 +6,10 @@ const getPathName = () => {
 };
 
 export const useGetPathName = () => {
-  const pathData: { id: string | null, index: number | null, name: string | null } = {
-    id: null,
-    index: null,
-    name: null
+  const pathData: { id: string, index: number, name: string } = {
+    id: "",
+    index: 0,
+    name: ""
   };
   const pathName = getPathName();
   const id = pathName.substring(pathName.length - 3);
