@@ -18,18 +18,16 @@ const Home: React.FC = () => {
   return (
     <div className="container">
       <ul>
-        {
-          ids.map((id) => (
-            <li key={id}>
-              <Link href="/works/[id]" as={`works/${id}`}>
-                <a className="Link">{ id }</a>
-              </Link>
-            </li>
-          ))
-        }
+        {ids.map((id) => (
+          <li key={id}>
+            <Link href="/works/[id]" as={`works/${id}`}>
+              <a className="Link">{id}</a>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
-}
+};
 
 export default Home;

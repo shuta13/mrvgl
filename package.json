@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write './{components,pages}/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "next": "9.3.4",
@@ -16,6 +17,7 @@
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
     "next-images": "^1.4.0",
+    "prettier": "^2.0.4",
     "raw-loader": "^4.0.0",
     "sass": "^1.26.3",
     "typescript": "^3.8.3"
