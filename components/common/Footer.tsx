@@ -1,10 +1,8 @@
 import React from "react";
 import works from "../../utils/data/works.json";
 
-const Footer: React.FC<{ pathData: { id: string, index: number } }> = ({pathData}) => {
+export const Footer: React.FC<{ pathData: { id: string | null, index: number | null } }> = ({pathData}) => {
   return (
-    <></>
+    <div className="FooterWrap"></div>
   );
 };
-
-export default Footer;

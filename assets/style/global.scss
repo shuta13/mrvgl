@@ -14,9 +14,20 @@ html, body {
   align-items: center;
 }
 
+// components/common/Header.tsx
 .HeaderWrap {
   position: fixed;
   width: 100%;
   height: 64px;
+  background: #dadada;
+}
+
+// components/common/Footer.tsx
+.FooterWrap {
+  position: fixed;
+  width: 256px;
+  height: 96px;
+  bottom: 0;
+  right: 0;
   background: #dadada;
 }
