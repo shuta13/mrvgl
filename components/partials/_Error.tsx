@@ -79,7 +79,7 @@ const _Error: React.FC<{ statusCode: number | undefined }> = ({
 
   return (
     <>
-      <canvas className="Canvas" ref={onCanvasLoaded}></canvas>
+      <canvas className="canvas" ref={onCanvasLoaded}></canvas>
       <div className="ErrorText">
         { statusCode } - Missed Archive
       </div>
