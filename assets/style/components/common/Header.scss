@@ -4,21 +4,31 @@
   height: 80px;
   background: transparent;
   display: flex;
-  justify-content: space-between;
 }
 
 .HeaderTitle {
-  height: 24px;
+  height: 32px;
+  white-space: nowrap;
   color: #1d1d1d;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 4rem;
   font-family: "Song Myung", serif;
   margin-top: 32px;
-  margin-left: 56px;
+  margin-left: 64px;
   letter-spacing: 4px;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
+}
+
+@media screen and (max-width: 615px) {
+  .HeaderWrap {
+    justify-content: center;
+  }
+  .HeaderTitle {
+    margin: 32px 0;
+    font-size: 3.5rem;
+  }
 }

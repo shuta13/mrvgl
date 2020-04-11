@@ -5,7 +5,7 @@ export const Header: React.FC = () => {
   return <div className="HeaderWrap">
     <Link href="/">
       <a className="HeaderTitle">
-        Maravilia
+        Maravilia Archives
       </a>
     </Link>
   </div>;
