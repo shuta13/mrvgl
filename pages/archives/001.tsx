@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
 import { Scene, PerspectiveCamera, WebGLRenderer } from "three";
-
-// const DynamicGui = dynamic(
-//   () => import("../../components/common/Gui"),
-
-// )
 
 // types, interface
 type HandleResizeParams = {
