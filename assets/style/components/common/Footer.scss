@@ -5,9 +5,8 @@
   bottom: 0;
   right: 0;
   background: transparent;
-  margin-right: 64px;
+  margin-right: 96px;
   margin-bottom: 64px;
-  padding-left: 32px;
   display: flex;
   justify-content: right;
   align-content: flex-end;
@@ -17,9 +16,10 @@
 .FooterText {
   width: 100%;
   color: #c2c2c2;
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Sarpanch", sans-serif;
   text-align: right;
+  margin-top: 2px;
 }
 
 .FooterTextHeader {
