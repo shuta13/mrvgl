@@ -15,14 +15,16 @@ import {
 type HandleResizeParams = {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
+  mesh: Mesh;
 };
 
-const handleResize = ({ camera, renderer }: HandleResizeParams) => {
+const handleResize = ({ camera, renderer, mesh }: HandleResizeParams) => {
   const width = window.innerWidth;
   const height = window.innerHeight;
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(width, height);
 };
 
 const _001: React.FC = () => {
@@ -58,7 +60,7 @@ const _001: React.FC = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
 
-    window.addEventListener("resize", () => handleResize({ camera, renderer }));
+    window.addEventListener("resize", () => handleResize({ camera, renderer, mesh }), false);
   };
   useEffect(() => {
     return () => window.removeEventListener("resize", () => handleResize);

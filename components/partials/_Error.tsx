@@ -27,7 +27,7 @@ const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   const height = window.innerHeight;
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  // renderer.setSize(width, height);
+  renderer.setSize(width, height);
 };
 
 const postProcessing = ({
