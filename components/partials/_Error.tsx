@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { WebGLRenderer, Scene, PerspectiveCamera, Object3D, Fog, DirectionalLight, AmbientLight } from "three";
+import {
+  WebGLRenderer,
+  Scene,
+  PerspectiveCamera,
+  Object3D,
+  Fog,
+  DirectionalLight,
+  AmbientLight,
+} from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass";
@@ -15,12 +23,12 @@ type PostProcessingParams = {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
   object: Object3D;
-}
+};
 
 type RenderSceneParams = {
   composer: EffectComposer;
   object: Object3D;
-}
+};
 
 const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   const width = window.innerWidth;
@@ -30,7 +38,12 @@ const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   renderer.setSize(width, height);
 };
 
-const postProcessing = ({ scene, camera, renderer, object }: PostProcessingParams) => {
+const postProcessing = ({
+  scene,
+  camera,
+  renderer,
+  object,
+}: PostProcessingParams) => {
   const composer = new EffectComposer(renderer);
   const renderPass = new RenderPass(scene, camera);
   composer.addPass(renderPass);
@@ -38,16 +51,16 @@ const postProcessing = ({ scene, camera, renderer, object }: PostProcessingParam
   glitchPass.renderToScreen = true;
   composer.addPass(glitchPass);
   renderScene({ composer, object });
-}
+};
 
 const renderScene = ({ composer, object }: RenderSceneParams) => {
   window.requestAnimationFrame(() => renderScene({ composer, object }));
   object.rotation.x += 0.01;
   composer.render();
-}
+};
 
 const _Error: React.FC<{ statusCode: number | undefined }> = ({
-  statusCode
+  statusCode,
 }) => {
   const onCanvasLoaded = (canvas: HTMLCanvasElement) => {
     if (!canvas) {
@@ -72,7 +85,7 @@ const _Error: React.FC<{ statusCode: number | undefined }> = ({
 
     window.addEventListener("resize", () => handleResize({ camera, renderer }));
   };
-  
+
   useEffect(() => {
     return () => window.removeEventListener("resize", () => handleResize);
   });
@@ -80,9 +93,7 @@ const _Error: React.FC<{ statusCode: number | undefined }> = ({
   return (
     <>
       <canvas className="canvas" ref={onCanvasLoaded}></canvas>
-      <div className="ErrorText">
-        { statusCode } - Missed Archive
-      </div>
+      <div className="ErrorText">{statusCode} - Missed Archive</div>
     </>
   );
 };

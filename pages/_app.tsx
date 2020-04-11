@@ -24,7 +24,14 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       <Header />
       {isArchives && <Footer pathData={pathData} archivesData={archivesData} />}
       <div className="ExternalLinkWrap">
-        <a className="ExternalLink" href="https://did0es.me" target="_blank" rel="noopener">Author</a>
+        <a
+          className="ExternalLink"
+          href="https://did0es.me"
+          target="_blank"
+          rel="noopener"
+        >
+          Author
+        </a>
       </div>
     </>
   );

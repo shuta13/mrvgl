@@ -5,10 +5,9 @@ interface Props {
   statusCode?: number;
 }
 
-const Dynamic_Error = dynamic(
-  () => import("../components/partials/_Error"),
-  { ssr: false }
-)
+const Dynamic_Error = dynamic(() => import("../components/partials/_Error"), {
+  ssr: false,
+});
 
 const Error: NextPage<Props> = ({ statusCode }) => {
   return (

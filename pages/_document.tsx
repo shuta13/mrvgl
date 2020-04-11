@@ -27,7 +27,10 @@ class MyDocument extends Document {
             property="og:image"
             content="https://did0es.me/static/ogp.jpg"
           />
-          <link href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Song+Myung&family=Sarpanch&display=swap" rel="stylesheet"></link>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Song+Myung&family=Sarpanch&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <body>
           <Main />
