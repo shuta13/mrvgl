@@ -16,13 +16,13 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <meta name="description" content="Photon" />
-          <meta property="og:site_name" content="Photon" />
+          <meta name="description" content="Maraviglia" />
+          <meta property="og:site_name" content="Maraviglia" />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://photon.did0es.me" />
-          <meta property="og:title" content="Photon" />
+          <meta property="og:url" content="https://maraviglia.did0es.me" />
+          <meta property="og:title" content="Maraviglia" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta property="og:description" content="Photon" />
+          <meta property="og:description" content="Maraviglia" />
           <meta
             property="og:image"
             content="https://did0es.me/static/ogp.jpg"

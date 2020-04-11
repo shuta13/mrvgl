@@ -15,9 +15,9 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
     <>
       <Head>
         {isWorks ? (
-          <title>Photon { titleId }</title>
+          <title>Maraviglia { titleId }</title>
         ) : (
-          <title>Photon</title>
+          <title>Maraviglia</title>
         )}
       </Head>
       <Component {...pageProps} />
