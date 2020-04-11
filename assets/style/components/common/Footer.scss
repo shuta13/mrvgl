@@ -16,14 +16,18 @@
 .FooterText {
   width: 100%;
   color: #c2c2c2;
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Sarpanch", sans-serif;
-  text-align: right;
-  margin-top: 2px;
+  letter-spacing: 1.5px;
+  height: 28px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .FooterTextHeader {
   @extend .FooterText;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
+  margin-bottom: 2px;
 }
