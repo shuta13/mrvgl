@@ -1,5 +1,15 @@
 import React, { useEffect } from "react";
-import { Scene, PerspectiveCamera, WebGLRenderer } from "three";
+import {
+  Scene,
+  PerspectiveCamera,
+  WebGLRenderer,
+  Clock,
+  TorusKnotBufferGeometry,
+  MeshStandardMaterial,
+  Mesh,
+  AmbientLight,
+  PointLight,
+} from "three";
 
 // types, interface
 type HandleResizeParams = {
@@ -12,7 +22,7 @@ const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   const height = window.innerHeight;
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setSize(width, height);
+  renderer.setPixelRatio(window.devicePixelRatio);
 };
 
 const _001: React.FC = () => {
@@ -23,15 +33,31 @@ const _001: React.FC = () => {
 
     const scene = new Scene();
     const camera = new PerspectiveCamera(
-      75,
+      45,
       canvas.clientWidth / canvas.clientHeight,
-      0.1,
+      1,
       1000
     );
+    camera.position.set(-10, 0, 15);
+    camera.lookAt(scene.position);
+
+    // const clock = new Clock();
+
+    const geometry = new TorusKnotBufferGeometry(3, 1, 256, 10);
+    const material = new MeshStandardMaterial({ color: 0xcccccc });
+    const mesh = new Mesh(geometry, material);
+    scene.add(mesh);
+
+    const ambientLight = new AmbientLight(0xffffff, 0.4);
+    scene.add(ambientLight);
+    const pointLight = new PointLight(0xffffff, 0.8);
+    scene.add(pointLight);
+
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setClearColor("#1d1d1d");
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
+
     window.addEventListener("resize", () => handleResize({ camera, renderer }));
   };
   useEffect(() => {
@@ -40,7 +66,7 @@ const _001: React.FC = () => {
   return (
     <>
       <div className="container">
-        <canvas ref={onCanvasLoaded}></canvas>
+        <canvas className="canvas" ref={onCanvasLoaded}></canvas>
       </div>
     </>
   );
