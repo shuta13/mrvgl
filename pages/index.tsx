@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-import works from "../utils/data/worksInfo.json";
+import archives from "../utils/data/archives.json";
 
 const ids: Array<string> = [];
-for (let i = 1; i < works.length + 1; i++) {
+for (let i = 1; i < archives.length + 1; i++) {
   if (i < 10) {
     ids.push(`00${i}`);
   } else if (i >= 10 && i < 100) {
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
       <ul>
         {ids.map((id) => (
           <li key={id}>
-            <Link href="/works/[id]" as={`works/${id}`}>
+            <Link href="/archives/[id]" as={`archives/${id}`}>
               <a className="Link">{id}</a>
             </Link>
           </li>

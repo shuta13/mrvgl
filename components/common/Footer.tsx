@@ -2,12 +2,12 @@ import React from "react";
 
 export const Footer: React.FC<{
   pathData: { id: string; index: number; name: string };
-  worksData: Array<{ name: string; desc: string }>;
-}> = ({ pathData, worksData }) => {
+  archivesData: Array<{ name: string; desc: string }>;
+}> = ({ pathData, archivesData }) => {
   return (
     <div className="FooterWrap">
-      <p>{worksData[pathData.index].name}</p>
-      <p>{worksData[pathData.index].desc}</p>
+      <p>{archivesData[pathData.index].name}</p>
+      <p>{archivesData[pathData.index].desc}</p>
     </div>
   );
 };

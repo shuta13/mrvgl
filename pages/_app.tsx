@@ -5,16 +5,16 @@ import Head from "next/head";
 import { Header } from "../components/common/Header";
 import { Footer } from "../components/common/Footer";
 import { useGetPathName } from "../utils/hooks/useGetPathName";
-import worksData from "../utils/data/worksInfo.json";
+import archivesData from "../utils/data/archives.json";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();
-  const isWorks = pathData.name.includes("works");
+  const isArchives = pathData.name.includes("archives");
   const titleId = `- ${pathData.id}`
   return (
     <>
       <Head>
-        {isWorks ? (
+        {isArchives ? (
           <title>Maraviglia { titleId }</title>
         ) : (
           <title>Maraviglia</title>
@@ -22,7 +22,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <Component {...pageProps} />
       <Header />
-      {isWorks && <Footer pathData={pathData} worksData={worksData} />}
+      {isArchives && <Footer pathData={pathData} archivesData={archivesData} />}
     </>
   );
 };
