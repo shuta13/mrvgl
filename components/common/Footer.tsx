@@ -6,7 +6,9 @@ export const Footer: React.FC<{
 }> = ({ pathData, archivesData }) => {
   return (
     <div className="FooterWrap">
-      <div className="FooterTextHeader">{archivesData[pathData.index].name}</div>
+      <div className="FooterTextHeader">
+        {archivesData[pathData.index].name}
+      </div>
       <div className="FooterText">{archivesData[pathData.index].createdAt}</div>
       <div className="FooterText">{archivesData[pathData.index].desc}</div>
     </div>

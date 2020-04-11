@@ -1,15 +1,16 @@
 import { NextPage } from "next";
+import { _Error } from "../components/partials/_Error";
 
 interface Props {
   statusCode?: number;
 }
 
 const Error: NextPage<Props> = ({ statusCode }) => {
-  return <div className="container">
-    <div className="ErrorText">
-      {statusCode} - Missed Archive Page.
+  return (
+    <div className="container">
+      <_Error statusCode={statusCode} />
     </div>
-  </div>;
+  );
 };
 
 Error.getInitialProps = (context) => {
