@@ -4,12 +4,12 @@ import Link from "next/link";
 import archives from "../utils/data/archives.json";
 
 const ids: Array<string> = [];
-for (let i = 1; i < archives.length + 1; i++) {
-  if (i < 10) {
+for (let i = 0; i < archives.length; i++) {
+  if (i > 0 && i < 10) {
     ids.push(`00${i}`);
   } else if (i >= 10 && i < 100) {
     ids.push(`0${i}`);
-  } else {
+  } else if (i >= 100) {
     ids.push(`${i}`);
   }
 }

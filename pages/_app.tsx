@@ -10,12 +10,12 @@ import archivesData from "../utils/data/archives.json";
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();
   const isArchives = pathData.name.includes("archives");
-  const titleId = `- ${pathData.id}`
+  const titleId = `- ${pathData.id}`;
   return (
     <>
       <Head>
         {isArchives ? (
-          <title>Maraviglia { titleId }</title>
+          <title>Maraviglia {titleId}</title>
         ) : (
           <title>Maraviglia</title>
         )}
