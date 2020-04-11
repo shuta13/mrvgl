@@ -18,6 +18,12 @@ type HandleResizeParams = {
   mesh: Mesh;
 };
 
+type AnimateParams = {
+  scene: Scene;
+  camera: PerspectiveCamera;
+  renderer: WebGLRenderer;
+};
+
 const handleResize = ({ camera, renderer, mesh }: HandleResizeParams) => {
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -25,6 +31,11 @@ const handleResize = ({ camera, renderer, mesh }: HandleResizeParams) => {
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
+};
+
+const animate = ({ scene, camera, renderer }: AnimateParams) => {
+  window.requestAnimationFrame(() => animate({ scene, camera, renderer }));
+  renderer.render(scene, camera);
 };
 
 const _001: React.FC = () => {
@@ -60,7 +71,13 @@ const _001: React.FC = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
 
-    window.addEventListener("resize", () => handleResize({ camera, renderer, mesh }), false);
+    animate({ scene, camera, renderer });
+
+    window.addEventListener(
+      "resize",
+      () => handleResize({ camera, renderer, mesh }),
+      false
+    );
   };
   useEffect(() => {
     return () => window.removeEventListener("resize", () => handleResize);
