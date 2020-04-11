@@ -20,10 +20,31 @@ html, body {
   justify-content: center;
   align-items: center;
   background: #1d1d1d;
+  ul {
+    padding: 0;
+  }
 }
 
 .canvas { 
   width: 100%;
   height: 100%;
   position: fixed;
+}
+
+.ExternalLinkWrap {
+  position: fixed;
+  background: transparent;
+  bottom: 0;
+  left: 0;
+  margin-left: 64px;
+  margin-bottom: 32px;
+  height: 24px;
+}
+
+.ExternalLink {
+  @extend .FooterText;
+  color: #fff;
+  font-family: "Sarpanch", sans-serif;
+  text-decoration: none;
+  font-size: 2rem;
 }
