@@ -27,7 +27,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
         <>
           <Footer pathData={pathData} archivesData={archivesData} />
           {
-            process.env.ENV === "dev" ? <Gui /> : null
+            // process.env.ENV === "dev" ? <Gui /> : null
           }
         </>
       )}
