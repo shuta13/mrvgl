@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer
-} from "three";
+import { Scene, PerspectiveCamera, WebGLRenderer } from "three";
 
 // types, interface
 type HandleResizeParams = {
@@ -33,17 +29,19 @@ const _001: React.FC = () => {
       1000
     );
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
-    renderer.setClearColor("#ffffff");
+    renderer.setClearColor("#1d1d1d");
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
-    window.addEventListener("resize", () => handleResize({ camera, renderer }))
-  }
+    window.addEventListener("resize", () => handleResize({ camera, renderer }));
+  };
   useEffect(() => {
     return () => window.removeEventListener("resize", () => handleResize);
-  })
-  return <div className="container">
-    <canvas ref={onCanvasLoaded}></canvas>
-  </div>;
+  });
+  return (
+    <div className="container">
+      <canvas ref={onCanvasLoaded}></canvas>
+    </div>
+  );
 };
 
 export default _001;

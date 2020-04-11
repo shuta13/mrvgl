@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  WebGLRenderer,
-  Scene,
-  PerspectiveCamera,
-  Object3D
-} from "three";
+import { WebGLRenderer, Scene, PerspectiveCamera, Object3D } from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass";
