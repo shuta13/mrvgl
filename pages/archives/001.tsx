@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Scene, PerspectiveCamera, WebGLRenderer } from "three";
+
+// const DynamicGui = dynamic(
+//   () => import("../../components/common/Gui"),
+
+// )
 
 // types, interface
 type HandleResizeParams = {
@@ -38,9 +44,11 @@ const _001: React.FC = () => {
     return () => window.removeEventListener("resize", () => handleResize);
   });
   return (
-    <div className="container">
-      <canvas ref={onCanvasLoaded}></canvas>
-    </div>
+    <>
+      <div className="container">
+        <canvas ref={onCanvasLoaded}></canvas>
+      </div>
+    </>
   );
 };
 
