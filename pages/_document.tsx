@@ -15,7 +15,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="description" content="Maraviglia" />
           <meta property="og:site_name" content="Maraviglia" />
