@@ -208,6 +208,7 @@ const F002: React.FC = () => {
       4000
     );
     camera.position.z = 1750;
+    // groupでパフォーマンス考慮
     const group = new Group();
     scene.add(group);
 
@@ -215,17 +216,18 @@ const F002: React.FC = () => {
     const helper = new BoxHelper(new Mesh(new BoxBufferGeometry(r, r, r)));
     const h = helper.material as any;
     h.color.setHex(0xff1111);
+    // 加算合成、発光する感じ : https://ics.media/entry/11401/
     h.blending = AdditiveBlending;
     h.transparent = true;
     group.add(helper);
 
-    // 関節部分のinit
+    // 頂点のinit
     // Float32Arrayでmax^2確保(パーティクル1つから最大4本手が生える)
     const segments = maxParticleCount * maxParticleCount;
     const positions = new Float32Array(segments * 3);
     const colors = new Float32Array(segments * 3);
   
-    // 関節部分の図形
+    // 頂点のマテリアル
     const pMaterial = new PointsMaterial({
       color: 0xff1111,
       size: 3,
