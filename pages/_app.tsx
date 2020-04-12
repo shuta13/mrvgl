@@ -24,12 +24,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       <Component {...pageProps} />
       <Header />
       {isArchives && (
-        <>
-          <Footer pathData={pathData} archivesData={archivesData} />
-          {/* {
-            process.env.ENV === "dev" ? <Gui /> : null
-          } */}
-        </>
+        <Footer pathData={pathData} archivesData={archivesData} />
       )}
       <div className="ExternalLinkWrap">
         <a

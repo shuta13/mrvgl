@@ -26,7 +26,7 @@ class MyDocument extends Document {
           <meta property="og:description" content="Maraviglia" />
           <meta
             property="og:image"
-            content="https://did0es.me/static/ogp.jpg"
+            content="https://maraviglia.now.sh/og-img.png"
           />
           <link
             href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Song+Myung&family=Sarpanch&display=swap"
