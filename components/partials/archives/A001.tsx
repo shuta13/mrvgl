@@ -102,10 +102,10 @@ const A001: React.FC = () => {
     dudvMap.wrapS = dudvMap.wrapT = RepeatWrapping;
     (refractor.material as any).uniforms["tDudv"].value = dudvMap;
 
-    const ambientLight = new AmbientLight(0xffffff, 0.4);
-    scene.add(ambientLight);
+    // const ambientLight = new AmbientLight(0xffffff, 0.2);
+    // scene.add(ambientLight);
     const pointLight = new PointLight(0xffffff, 1.2);
-    pointLight.position.set(0, 0, 3)
+    pointLight.position.set(0, 0, 1)
     scene.add(pointLight);
 
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
