@@ -3,8 +3,7 @@ import {
   Scene,
   PerspectiveCamera,
   WebGLRenderer,
-  Clock,
-  TorusKnotBufferGeometry,
+  TorusBufferGeometry,
   MeshStandardMaterial,
   Mesh,
   AmbientLight,
@@ -13,6 +12,7 @@ import {
   Color,
   TextureLoader,
   RepeatWrapping,
+  Clock,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Refractor } from "three/examples/jsm/objects/Refractor";
@@ -29,8 +29,11 @@ type AnimateParams = {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
   refractor: Refractor;
-  clock: Clock;
 };
+
+//
+
+const clock = new Clock();
 
 const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   const width = window.innerWidth;
@@ -45,11 +48,10 @@ const animate = ({
   scene,
   camera,
   renderer,
-  refractor,
-  clock,
+  refractor
 }: AnimateParams) => {
   window.requestAnimationFrame(() =>
-    animate({ scene, camera, renderer, refractor, clock })
+    animate({ scene, camera, renderer, refractor })
   );
   (refractor.material as any).uniforms["time"].value += clock.getDelta();
   renderer.render(scene, camera);
@@ -68,19 +70,19 @@ const A001: React.FC = () => {
       1,
       1000
     );
-    camera.position.set(0, 0, 18);
+    camera.position.set(5, 16, 4.4);
     camera.lookAt(scene.position);
 
-    const clock = new Clock();
-
-    const geometry = new TorusKnotBufferGeometry(3, 1, 256, 10);
+    const geometry = new TorusBufferGeometry(4, 1, 256, 40);
     const material = new MeshStandardMaterial({ color: 0xcccccc });
+    material.needsUpdate = false;
     const mesh = new Mesh(geometry, material);
+    mesh.rotation.x = 20
     scene.add(mesh);
 
     const refractorGeometry = new PlaneBufferGeometry(
-      canvas.clientWidth,
-      canvas.clientHeight
+      canvas.clientWidth / 4,
+      canvas.clientHeight / 4
     );
     const refractor = new Refractor(refractorGeometry, {
       color: new Color(0x7d7d7d),
@@ -88,13 +90,13 @@ const A001: React.FC = () => {
       textureHeight: 1024,
       shader: WaterRefractionShader,
     });
-    refractor.position.set(0, 0, 3);
+    refractor.position.set(0, 0, 2.5);
     scene.add(refractor);
 
     const dudvMap = new TextureLoader().load(
       require("../../../assets/image/waterdudv.jpg"),
       () => {
-        animate({ scene, camera, renderer, refractor, clock });
+        animate({ scene, camera, renderer, refractor });
       }
     );
     dudvMap.wrapS = dudvMap.wrapT = RepeatWrapping;
@@ -108,11 +110,12 @@ const A001: React.FC = () => {
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setClearColor("#1d1d1d");
     renderer.setSize(window.innerWidth, window.innerHeight);
+    
     renderer.render(scene, camera);
 
     new OrbitControls(camera, renderer.domElement);
 
-    animate({ scene, camera, renderer, refractor, clock });
+    animate({ scene, camera, renderer, refractor });
 
     window.addEventListener(
       "resize",
