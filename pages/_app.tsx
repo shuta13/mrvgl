@@ -26,9 +26,9 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       {isArchives && (
         <>
           <Footer pathData={pathData} archivesData={archivesData} />
-          {
+          {/* {
             process.env.ENV === "dev" ? <Gui /> : null
-          }
+          } */}
         </>
       )}
       <div className="ExternalLinkWrap">

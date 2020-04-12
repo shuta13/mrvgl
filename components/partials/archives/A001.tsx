@@ -72,9 +72,9 @@ const A001: React.FC = () => {
 
     const refractorGeometry = new PlaneBufferGeometry(canvas.clientWidth, canvas.clientHeight);
     const refractor = new Refractor(refractorGeometry, {
-      color: new Color(0xffffff),
-      textureWidth: canvas.clientWidth,
-      textureHeight: canvas.clientHeight,
+      color: new Color(0x7d7d7d),
+      textureWidth: 1024,
+      textureHeight: 1024,
       shader: WaterRefractionShader
     });
     refractor.position.set(0, 0, 3);
