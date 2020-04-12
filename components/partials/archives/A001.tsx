@@ -41,9 +41,17 @@ const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   renderer.setSize(width, height);
 };
 
-const animate = ({ scene, camera, renderer, refractor, clock }: AnimateParams) => {
-  window.requestAnimationFrame(() => animate({ scene, camera, renderer, refractor, clock }));
-  (refractor.material as any).uniforms[ "time" ].value += clock.getDelta();
+const animate = ({
+  scene,
+  camera,
+  renderer,
+  refractor,
+  clock,
+}: AnimateParams) => {
+  window.requestAnimationFrame(() =>
+    animate({ scene, camera, renderer, refractor, clock })
+  );
+  (refractor.material as any).uniforms["time"].value += clock.getDelta();
   renderer.render(scene, camera);
 };
 
@@ -70,21 +78,27 @@ const A001: React.FC = () => {
     const mesh = new Mesh(geometry, material);
     scene.add(mesh);
 
-    const refractorGeometry = new PlaneBufferGeometry(canvas.clientWidth, canvas.clientHeight);
+    const refractorGeometry = new PlaneBufferGeometry(
+      canvas.clientWidth,
+      canvas.clientHeight
+    );
     const refractor = new Refractor(refractorGeometry, {
       color: new Color(0x7d7d7d),
       textureWidth: 1024,
       textureHeight: 1024,
-      shader: WaterRefractionShader
+      shader: WaterRefractionShader,
     });
     refractor.position.set(0, 0, 3);
     scene.add(refractor);
 
-    const dudvMap = new TextureLoader().load(require("../../../assets/image/waterdudv.jpg"), () => {
-      animate({ scene, camera, renderer, refractor, clock });
-    });
+    const dudvMap = new TextureLoader().load(
+      require("../../../assets/image/waterdudv.jpg"),
+      () => {
+        animate({ scene, camera, renderer, refractor, clock });
+      }
+    );
     dudvMap.wrapS = dudvMap.wrapT = RepeatWrapping;
-    (refractor.material as any).uniforms[ "tDudv" ].value = dudvMap;
+    (refractor.material as any).uniforms["tDudv"].value = dudvMap;
 
     const ambientLight = new AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
