@@ -45,12 +45,7 @@ const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   renderer.setSize(width, height);
 };
 
-const animate = ({
-  scene,
-  camera,
-  renderer,
-  refractor
-}: AnimateParams) => {
+const animate = ({ scene, camera, renderer, refractor }: AnimateParams) => {
   window.requestAnimationFrame(() =>
     animate({ scene, camera, renderer, refractor })
   );
@@ -83,7 +78,7 @@ const A001: React.FC = () => {
     const material = new MeshStandardMaterial({ color: 0xcccccc });
     material.needsUpdate = false;
     const mesh = new Mesh(geometry, material);
-    mesh.rotation.x = 20
+    mesh.rotation.x = 20;
     scene.add(mesh);
 
     const refractorGeometry = new PlaneBufferGeometry(
@@ -111,13 +106,13 @@ const A001: React.FC = () => {
     // const ambientLight = new AmbientLight(0xffffff, 0.2);
     // scene.add(ambientLight);
     const pointLight = new PointLight(0xffffff, 1.2);
-    pointLight.position.set(0, 0, 1)
+    pointLight.position.set(0, 0, 1);
     scene.add(pointLight);
 
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setClearColor("#1d1d1d");
     renderer.setSize(window.innerWidth, window.innerHeight);
-    
+
     renderer.render(scene, camera);
 
     if (process.env.ENV === "dev") {
