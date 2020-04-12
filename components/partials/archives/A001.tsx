@@ -104,7 +104,8 @@ const A001: React.FC = () => {
 
     const ambientLight = new AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
-    const pointLight = new PointLight(0xffffff, 0.8);
+    const pointLight = new PointLight(0xffffff, 1.2);
+    pointLight.position.set(0, 0, 3)
     scene.add(pointLight);
 
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
@@ -113,7 +114,9 @@ const A001: React.FC = () => {
     
     renderer.render(scene, camera);
 
-    new OrbitControls(camera, renderer.domElement);
+    if (process.env.ENV === "dev") {
+      new OrbitControls(camera, renderer.domElement);
+    }
 
     animate({ scene, camera, renderer, refractor });
 
