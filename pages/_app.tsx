@@ -23,19 +23,20 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <Component {...pageProps} />
       <Header />
-      {isArchives && (
+      {isArchives ? (
         <Footer pathData={pathData} archivesData={archivesData} />
+      ) : (
+        <div className="ExternalLinkWrap">
+          <a
+            className="ExternalLink"
+            href="https://did0es.me"
+            target="_blank"
+            rel="noopener"
+          >
+            Author
+          </a>
+        </div>
       )}
-      <div className="ExternalLinkWrap">
-        <a
-          className="ExternalLink"
-          href="https://did0es.me"
-          target="_blank"
-          rel="noopener"
-        >
-          Author
-        </a>
-      </div>
     </>
   );
 };
