@@ -202,10 +202,10 @@ const F002: React.FC = () => {
 
     // init GUI
     const gui = new GUI();
-    gui.add(effectController, "showDots").onChange(function (value: boolean) {
+    gui.add(effectController, "showDots").onChange((value: boolean) => {
       pointCloud.visible = value;
     });
-    gui.add(effectController, "showLines").onChange(function (value: boolean) {
+    gui.add(effectController, "showLines").onChange((value: boolean) => {
       linesMesh.visible = value;
     });
     gui.add(effectController, "minDistance", 10, 300);
@@ -213,7 +213,7 @@ const F002: React.FC = () => {
     gui.add(effectController, "maxConnections", 0, 30, 1);
     gui
       .add(effectController, "particleCount", 0, maxParticleCount, 1)
-      .onChange(function (value: string) {
+      .onChange((value: string) => {
         const particleCount = parseInt(value);
         particles.setDrawRange(0, particleCount);
       });
