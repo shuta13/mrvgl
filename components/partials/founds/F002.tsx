@@ -22,6 +22,7 @@ import {
   sRGBEncoding,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+const { GUI } = require("three/examples/jsm/libs/dat.gui.module");
 
 // types
 type HandleResizeParams = {
@@ -37,12 +38,12 @@ type AnimateParams = {
   positions: Float32Array;
   colors: Float32Array;
   linesMesh: LineSegments;
-  pointCloud: Points
+  pointCloud: Points;
 };
 
 //
 
-const maxParticleCount = 100;
+const maxParticleCount = 400;
 const particleCount = 100;
 const r = 800;
 const rHalf = 800 / 2;
@@ -56,7 +57,7 @@ const effectController = {
   minDistance: 150,
   limitConnections: false,
   maxConnections: 20,
-  particleCount: 500,
+  particleCount: 100,
 };
 
 //
@@ -77,7 +78,7 @@ const animate = ({
   positions,
   colors,
   linesMesh,
-  pointCloud
+  pointCloud,
 }: AnimateParams) => {
   let vertexPos = 0;
   let colorPos = 0;
@@ -168,13 +169,13 @@ const animate = ({
       }
     }
   }
-  const l = linesMesh.geometry as any
-  l.setDrawRange(0, numConnected * 2)
+  const l = linesMesh.geometry as any;
+  l.setDrawRange(0, numConnected * 2);
   l.attributes.position.needsUpdate = true;
   l.attributes.color.needsUpdate = true;
 
-  const p = pointCloud.geometry as any
-  p.attributes.position.needsUpdate = true
+  const p = pointCloud.geometry as any;
+  p.attributes.position.needsUpdate = true;
 
   window.requestAnimationFrame(() =>
     animate({
@@ -185,7 +186,7 @@ const animate = ({
       positions,
       colors,
       linesMesh,
-      pointCloud
+      pointCloud,
     })
   );
   renderer.render(scene, camera);
@@ -198,6 +199,24 @@ const F002: React.FC = () => {
     if (!canvas) {
       return;
     }
+
+    // init GUI
+    const gui = new GUI();
+    gui.add(effectController, "showDots").onChange(function (value: boolean) {
+      pointCloud.visible = value;
+    });
+    gui.add(effectController, "showLines").onChange(function (value: boolean) {
+      linesMesh.visible = value;
+    });
+    gui.add(effectController, "minDistance", 10, 300);
+    gui.add(effectController, "limitConnections");
+    gui.add(effectController, "maxConnections", 0, 30, 1);
+    gui
+      .add(effectController, "particleCount", 0, maxParticleCount, 1)
+      .onChange(function (value: string) {
+        const particleCount = parseInt(value);
+        particles.setDrawRange(0, particleCount);
+      });
 
     // init
     const scene = new Scene();
@@ -226,7 +245,7 @@ const F002: React.FC = () => {
     const segments = maxParticleCount * maxParticleCount;
     const positions = new Float32Array(segments * 3);
     const colors = new Float32Array(segments * 3);
-  
+
     // 頂点のマテリアル
     const pMaterial = new PointsMaterial({
       color: 0xff1111,
@@ -253,7 +272,7 @@ const F002: React.FC = () => {
       particlesData.push({
         // 3次元ベクトル
         // -1 ~ 1の範囲にする、正規化みたいな感じ
-        // バラバラに動かすための重み?
+        // 頂点をバラバラに動かすための重み?
         velocity: new Vector3(
           -1 + Math.random() * 2,
           -1 + Math.random() * 2,
@@ -263,7 +282,7 @@ const F002: React.FC = () => {
       });
     }
 
-    // 線を引く、paticleCountは頂点数
+    // paticleCountの数だけ頂点を表示
     particles.setDrawRange(0, particleCount);
     // よくわからん : https://developer.mozilla.org/ja/docs/Web/API/WebGLRenderingContext/bufferData っぽい
     particles.setAttribute(
@@ -320,7 +339,7 @@ const F002: React.FC = () => {
       positions,
       colors,
       linesMesh,
-      pointCloud
+      pointCloud,
     });
 
     window.addEventListener(
