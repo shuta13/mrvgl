@@ -6,7 +6,6 @@ import { Header } from "../components/common/Header";
 import { Footer } from "../components/common/Footer";
 import { useGetPathName } from "../utils/hooks/useGetPathName";
 import archivesData from "../utils/data/archives.json";
-import Gui from "../components/common/Gui";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();

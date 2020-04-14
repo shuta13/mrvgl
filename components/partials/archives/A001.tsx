@@ -17,6 +17,7 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Refractor } from "three/examples/jsm/objects/Refractor";
 import { WaterRefractionShader } from "three/examples/jsm/shaders/WaterRefractionShader";
+const { GUI } = require("three/examples/jsm/libs/dat.gui.module");
 
 // types, interface
 type HandleResizeParams = {
@@ -61,6 +62,11 @@ const A001: React.FC = () => {
   const onCanvasLoaded = (canvas: HTMLCanvasElement) => {
     if (!canvas) {
       return;
+    }
+
+    // init gui
+    if (process.env.ENV === "dev") {
+      const gui = new GUI();
     }
 
     const scene = new Scene();
