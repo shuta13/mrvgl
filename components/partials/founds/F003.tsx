@@ -13,6 +13,7 @@ import {
   MathUtils,
   Texture
 } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 const vert = require("../../../assets/shader/F003/vertex.glsl");
 const frag = require("../../../assets/shader/F003/fragment.glsl");
 
@@ -66,9 +67,12 @@ const animate = ({
   window.requestAnimationFrame(() =>
     animate({ scene, camera, renderer, sphere, uniforms, displacement, noise })
   );
-  sphere.rotation.y = sphere.rotation.z = performance.now() * 0.0001;
-  uniforms.amplitude.value = 2.5 * Math.sin(sphere.rotation.y * 0.125)
-  uniforms.color.value.offsetHSL(0.0005, 0, 0)
+  // sphere.rotation.y = sphere.rotation.z = performance.now() * 0.0001;
+
+  // uniforms.amplitude.value = 2.5 * Math.sin(performance.now() * 0.0001 * 0.125)
+  // uniforms.amplitude.value = 2.5 * Math.sin(sphere.rotation.y * 0.125)
+
+  uniforms.color.value.offsetHSL(0.0005, 0.0005, 0.0005)
 
   for(let i = 0; i < displacement.length; i++) {
     displacement[i] = Math.sin(0.1 * i + performance.now() * 0.01)
@@ -101,7 +105,7 @@ const F003: React.FC = () => {
         value: 1.0,
       },
       color: {
-        value: new Color(0xff2200),
+        value: new Color(0xcccccc),
       },
       colorTexture: {
         value: new TextureLoader().load(
@@ -118,7 +122,7 @@ const F003: React.FC = () => {
     });
 
     const radius = 50;
-    const segments = 128;
+    const segments = 256;
     const rings = 64;
 
     const geometry = new SphereBufferGeometry(radius, segments, rings);
@@ -137,6 +141,10 @@ const F003: React.FC = () => {
     renderer.setClearColor("#1d1d1d");
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
+
+    if (process.env.ENV) {
+      new OrbitControls(camera, renderer.domElement);
+    }
 
     animate({ scene, camera, renderer, sphere, uniforms, displacement, noise });
 
