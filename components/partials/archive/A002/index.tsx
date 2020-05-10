@@ -84,7 +84,7 @@ const A002: React.FC = () => {
       },
       resolution: {
         type: "v2",
-        value: new Vector2(window.innerWidth, window.innerHeight)
+        value: new Vector2(window.innerWidth * dpr, window.innerHeight * dpr)
       },
       texture: {
         type: "t",
