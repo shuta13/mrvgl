@@ -41,7 +41,7 @@ const A002: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = "200px serif";
+      context.font = "240px serif";
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
