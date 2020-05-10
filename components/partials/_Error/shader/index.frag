@@ -93,6 +93,6 @@ void main() {
   float rowNumber = 2048.;
   vec3 color = vec3(.18);
   // make row
-  color *= max(sin(time * .2 + (uv.y + time  * .4) * rowNumber) * snoise(vec3(uv.x, uv.y, time * .2)), .15) + .4;
+  color *= max(sin(time * .2 + (uv.y + time  * .4) * rowNumber) * snoise(vec3(uv.x, uv.y, time * .1)), .15) + .4;
   gl_FragColor = vec4(color, 1.);
 }
