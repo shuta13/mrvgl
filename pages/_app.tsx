@@ -10,7 +10,7 @@ import Overlay from "../components/common/Overlay";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();
-  const isArchives = pathData.name.includes("archives");
+  const isArchives = pathData.name.includes("archive");
   const titleId = `- ${pathData.id}`;
 
   return (
