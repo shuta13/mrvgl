@@ -38,7 +38,7 @@ html, body {
   background: transparent;
   bottom: 0;
   right: 0;
-  margin-right: 64px;
+  margin-right: 40px;
   margin-bottom: 32px;
   height: 24px;
   height: 28px;
@@ -46,7 +46,7 @@ html, body {
 
 .ExternalLink {
   @extend .FooterText;
-  font-family: "Sarpanch", sans-serif;
+  font-family: "Share Tech Mono", sans-serif;
   text-decoration: none;
   font-size: 2.5rem;
 }

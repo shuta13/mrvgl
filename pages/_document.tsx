@@ -29,7 +29,7 @@ class MyDocument extends Document {
             content="https://maraviglia.now.sh/og-img.png"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Song+Myung&family=Sarpanch&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Song+Myung&family=Share+Tech+Mono&family=Sarpanch&display=swap"
             rel="stylesheet"
           ></link>
         </Head>

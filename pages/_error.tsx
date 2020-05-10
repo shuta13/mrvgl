@@ -1,18 +1,14 @@
 import { NextPage } from "next";
-import dynamic from "next/dynamic";
+import _Error from "../components/partials/_Error";
 
 interface Props {
   statusCode?: number;
 }
 
-const Dynamic_Error = dynamic(() => import("../components/partials/_Error"), {
-  ssr: false,
-});
-
 const Error: NextPage<Props> = ({ statusCode }) => {
   return (
     <div className="container">
-      <Dynamic_Error statusCode={statusCode} />
+      <_Error statusCode={statusCode} />
     </div>
   );
 };
