@@ -1,16 +1,19 @@
 @import "./pages/index.scss";
 @import "./pages/_error";
-@import "./components/common/Header.scss";
-@import "./components/common/Footer.scss";
+@import "../../components/common/Header.scss";
+@import "../../components/common/Footer.scss";
 
 html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   font-size: 8px;
   background: #1d1d1d;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .container {

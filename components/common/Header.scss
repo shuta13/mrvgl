@@ -1,5 +1,7 @@
 .HeaderWrap {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 80px;
   background: transparent;
@@ -9,14 +11,13 @@
 }
 
 .HeaderTitle {
-  height: 32px;
+  height: 48px;
   white-space: nowrap;
   color: #1d1d1d;
   text-decoration: none;
   font-size: 4.5rem;
   font-family: "Song Myung", serif;
-  margin-top: 32px;
-  margin-left: 64px;
+  margin-left: 40px;
   letter-spacing: 4px;
   background: #fff;
   display: flex;
