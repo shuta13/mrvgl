@@ -6,11 +6,13 @@ import { Header } from "../components/common/Header";
 import { Footer } from "../components/common/Footer";
 import { useGetPathName } from "../utils/hooks/useGetPathName";
 import archivesData from "../utils/data/archives.json";
+import Overlay from "../components/common/Overlay";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();
   const isArchives = pathData.name.includes("archives");
   const titleId = `- ${pathData.id}`;
+
   return (
     <>
       <Head>
@@ -21,7 +23,6 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
         )}
       </Head>
       <Component {...pageProps} />
-      <Header />
       {isArchives ? (
         <Footer pathData={pathData} archivesData={archivesData} />
       ) : (
@@ -36,6 +37,22 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
           </a>
         </div>
       )}
+      {
+        isArchives 
+          ? (
+            <>
+              {
+                archivesData.map(archive => (
+                  archive.desc === "wip"
+                    ? <Overlay />
+                    : null
+                ))
+              }
+            </>
+          )
+          : null
+      }
+      <Header />
     </>
   );
 };

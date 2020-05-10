@@ -7,3 +7,5 @@ const Overlay: React.FC = () => {
     </div>
   )
 }
+
+export default Overlay;
