@@ -1,7 +1,8 @@
 import React from "react";
+import A002 from "../../components/partials/archives/A002";
 
 const _002: React.FC = () => {
-  return <div className="container"></div>;
+  return <A002 />;
 };
 
 export default _002;
