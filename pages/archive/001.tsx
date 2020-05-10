@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const A001 = dynamic(() => import("../../components/partials/archives/A001"), {
+const A001 = dynamic(() => import("../../components/partials/archive/A001"), {
   ssr: false,
 });
 
