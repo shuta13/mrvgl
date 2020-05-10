@@ -43,7 +43,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
             <>
               {
                 archivesData.map(archive => (
-                  archive.desc === "wip"
+                  archive.desc === "" && pathData.id === archive.id
                     ? <Overlay />
                     : null
                 ))
