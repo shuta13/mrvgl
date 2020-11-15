@@ -59,11 +59,11 @@ const A002: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = "240px serif";
+      context.font = `${128 * dpr}px serif`;
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
-      context.fillText("Bring It Down", canvasWidth / 2, canvasHeight / 2);
+      context.fillText("I Know You", canvasWidth / 2, canvasHeight / 2);
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
       return texture;
