@@ -30,11 +30,8 @@ type AnimateParams = {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
   refractor: Refractor;
+  clock: Clock;
 };
-
-//
-
-const clock = new Clock();
 
 const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   const width = window.innerWidth;
@@ -45,9 +42,15 @@ const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   renderer.setSize(width, height);
 };
 
-const animate = ({ scene, camera, renderer, refractor }: AnimateParams) => {
+const animate = ({
+  scene,
+  camera,
+  renderer,
+  refractor,
+  clock,
+}: AnimateParams) => {
   window.requestAnimationFrame(() =>
-    animate({ scene, camera, renderer, refractor })
+    animate({ scene, camera, renderer, refractor, clock })
   );
   (refractor.material as any).uniforms["time"].value += clock.getDelta();
   renderer.render(scene, camera);
@@ -97,7 +100,7 @@ const A001: React.FC = () => {
     const dudvMap = new TextureLoader().load(
       require("../../../assets/image/waterdudv.jpg"),
       () => {
-        animate({ scene, camera, renderer, refractor });
+        animate({ scene, camera, renderer, refractor, clock });
       }
     );
     dudvMap.wrapS = dudvMap.wrapT = RepeatWrapping;
@@ -109,6 +112,8 @@ const A001: React.FC = () => {
     pointLight.position.set(0, 0, 1);
     scene.add(pointLight);
 
+    const clock = new Clock();
+
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setClearColor("#1d1d1d");
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -119,7 +124,7 @@ const A001: React.FC = () => {
       new OrbitControls(camera, renderer.domElement);
     }
 
-    animate({ scene, camera, renderer, refractor });
+    animate({ scene, camera, renderer, refractor, clock });
 
     window.addEventListener(
       "resize",
