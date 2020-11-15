@@ -12,6 +12,8 @@
 
 .HeaderTitle {
   height: 48px;
+  width: 90%;
+  max-width: 420px;
   white-space: nowrap;
   color: #1d1d1d;
   text-decoration: none;
@@ -26,13 +28,13 @@
   padding: 8px 16px;
 }
 
-@media screen and (max-width: 615px) {
+@media screen and (max-width: 768px) {
   .HeaderWrap {
     justify-content: center;
   }
   .HeaderTitle {
     margin: 0;
     margin-top: 32px;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 }
