@@ -63,7 +63,15 @@ const A002: React.FC = () => {
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
-      context.fillText("I Know You", canvasWidth / 2, canvasHeight / 2);
+      for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 8; i++) {
+          context.fillText(
+            "I Know You",
+            j * canvasWidth * 0.75,
+            i * (canvasHeight / 6)
+          );
+        }
+      }
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
       return texture;
