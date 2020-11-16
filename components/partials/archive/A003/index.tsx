@@ -60,7 +60,7 @@ const A003: React.FC = () => {
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
-      context.fillText("Jellyfish", canvasWidth / 2, canvasHeight / 2);
+      context.fillText("Vagueness", canvasWidth / 2, canvasHeight / 2);
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
       return texture;
