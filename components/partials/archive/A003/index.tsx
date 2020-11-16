@@ -56,11 +56,11 @@ const A003: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = `italic ${128 * dpr}px Century Gothic `;
+      context.font = `italic bold ${128 * dpr}px Century Gothic `;
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
-      context.fillText("Anonymous", canvasWidth / 2, canvasHeight / 2);
+      context.fillText("Jellyfish", canvasWidth / 2, canvasHeight / 2);
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
       return texture;

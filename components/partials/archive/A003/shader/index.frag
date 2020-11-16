@@ -94,7 +94,7 @@ void main() {
   vec3 color = vec3(.085);
 
   // mosaic
-  float size = 60.;
+  float size = 160.;
   uv = vec2(floor(uv * size)) / size;
 
   // neutral
@@ -108,25 +108,36 @@ void main() {
   // color -= snoise(vec3(uv.x, uv.y, 1.9));
 
   // glitch
-  if (mod(uv.y, 1.) < 1. && mod(time, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {
+  if (mod(time * snoise(vec3(uv.x, uv.y, time * .2)), 2.) < 1. || mod(uv.y * snoise(vec3(uv.x, uv.y, uv.x / uv.y)) + time * 0.5, 3.) < 1.) {
     uv = vec2(floor(uv * size)) / size;
-    color.r += texture2D(texture, vec2(uv.x, uv.y + .002)).r;
-    color.g += texture2D(texture, vec2(uv.x - .002, uv.y)).g;
+    color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
+    color.g += texture2D(texture, vec2(uv.x + .002, uv.y)).g;
     color.b += texture2D(texture, vec2(uv.x, uv.y - .002)).b;
   } else {
     color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
-    color.g += texture2D(texture, vec2(uv.x, uv.y - .002)).g;
+    color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
     color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
   }
 
-  if (mod(uv.y, 1.) < .5 && mod(time, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {
-    uv = vec2(floor(uv * size)) / size;
-    color += texture2D(texture, vec2(uv.x - .01, uv.y)).rgb;
-  } else {
-    color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
-    color.g += texture2D(texture, vec2(uv.x, uv.y - .002)).g;
-    color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
-  }
+  // if (mod(uv.y, 1.) < 1. && mod(time * 0.1, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {
+  //   uv = vec2(floor(uv * size)) / size;
+  //   color.r += texture2D(texture, vec2(uv.x, uv.y + .002)).r;
+  //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
+  //   color.b += texture2D(texture, vec2(uv.x, uv.y - .002)).b;
+  // } else {
+  //   color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
+  //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
+  //   color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
+  // }
+
+  // if (mod(uv.y, 1.) < .5 && mod(time, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {
+  //   uv = vec2(floor(uv * size)) / size;
+  //   color += texture2D(texture, vec2(uv.x - .01, uv.y)).rgb;
+  // } else {
+  //   color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
+  //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
+  //   color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
+  // }
 
   gl_FragColor = vec4(color, 1.);
 }
