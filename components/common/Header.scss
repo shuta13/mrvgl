@@ -12,16 +12,16 @@
 
 .HeaderTitle {
   height: 48px;
-  width: 90%;
+  width: 100%;
   max-width: 420px;
   white-space: nowrap;
   color: #1d1d1d;
   text-decoration: none;
   font-size: 4.5rem;
   font-family: "Song Myung", serif;
-  margin-left: 40px;
+  margin-left: 1em;
   letter-spacing: 4px;
-  background: #fff;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,10 +31,12 @@
 @media screen and (max-width: 768px) {
   .HeaderWrap {
     justify-content: center;
+    align-items: flex-start;
   }
   .HeaderTitle {
     margin: 0;
-    margin-top: 32px;
-    font-size: 2.5rem;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
   }
 }

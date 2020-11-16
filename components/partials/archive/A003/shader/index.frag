@@ -91,10 +91,19 @@ float snoise(vec3 v) {
 
 void main() {
   vec2 uv = gl_FragCoord.xy / resolution;
-  vec3 color = vec3(.085);
+  vec3 color = vec3(.75, .065, .065);
+
+  color *= .8 - vec3(uv.x * snoise(vec3(uv.x * .5, uv.x * .5, .2 * time)) * uv.y * snoise(vec3(uv.y, uv.y, .2 * time)) * 4.);
 
   // mosaic
-  float size = 160.;
+  float size = 0.;
+  if (mod(time * snoise(vec3(uv.x)), 2.) < 1.) {
+    size = 240.;
+  } else if (mod(time * snoise(vec3(uv.y)), 3.) < 2.) {
+    size = 120.;
+  } else {
+    size = 60.;
+  }
   uv = vec2(floor(uv * size)) / size;
 
   // neutral
@@ -108,7 +117,7 @@ void main() {
   // color -= snoise(vec3(uv.x, uv.y, 1.9));
 
   // glitch
-  if (mod(time * snoise(vec3(uv.x, uv.y, time * .4)), 2.) < 1. || mod(uv.y * snoise(vec3(uv.x, uv.y, uv.x / uv.y)) + time * 0.6, 3.) < 1.) {
+  if (mod(time * snoise(vec3(time * .01)), 4.) < 3.) {
     uv = vec2(floor(uv * size)) / size;
     color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
     color.g += texture2D(texture, vec2(uv.x, uv.y)).g;

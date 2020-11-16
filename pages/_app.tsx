@@ -11,6 +11,7 @@ import Overlay from "../components/common/Overlay";
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const pathData = useGetPathName();
   const isArchives = pathData.name.includes("archive");
+  const isCapture = pathData.name.includes("capture");
   const titleId = `- ${pathData.id}`;
 
   return (
@@ -23,36 +24,36 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
         )}
       </Head>
       <Component {...pageProps} />
-      {isArchives ? (
-        <Footer pathData={pathData} archivesData={archivesData} />
-      ) : (
-        <div className="ExternalLinkWrap">
-          <a
-            className="ExternalLink"
-            href="https://did0es.me"
-            target="_blank"
-            rel="noopener"
-          >
-            Author
-          </a>
-        </div>
+      {!isCapture && (
+        <>
+          {isArchives ? (
+            <Footer pathData={pathData} archivesData={archivesData} />
+          ) : (
+            <div className="ExternalLinkWrap">
+              <a
+                className="ExternalLink"
+                href="https://did0es.me"
+                target="_blank"
+                rel="noopener"
+              >
+                Author
+              </a>
+            </div>
+          )}
+        </>
       )}
-      {
-        isArchives 
-          ? (
-            <>
-              {
-                archivesData.map(archive => (
-                  archive.desc === "" && pathData.id === archive.id && process.env.ENV !== "dev"
-                    ? <Overlay />
-                    : null
-                ))
-              }
-            </>
-          )
-          : null
-      }
-      <Header />
+      {isArchives ? (
+        <>
+          {archivesData.map((archive) =>
+            archive.desc === "" &&
+            pathData.id === archive.id &&
+            process.env.ENV !== "dev" ? (
+              <Overlay />
+            ) : null
+          )}
+        </>
+      ) : null}
+      {!isCapture && <Header />}
     </>
   );
 };

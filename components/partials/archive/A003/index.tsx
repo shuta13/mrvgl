@@ -56,10 +56,10 @@ const A003: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = `bold ${200 * dpr}px Century Gothic `;
-      context.strokeStyle = "#333333";
+      context.font = `bold ${232 * dpr}px Century Gothic `;
+      context.strokeStyle = "#777777";
       context.lineWidth = 2;
-      context.strokeText("VAGUE", canvasWidth / 5, canvasHeight / 2);
+      context.strokeText("VAGUE", canvasWidth / 6, canvasHeight / 2);
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
@@ -73,6 +73,7 @@ const A003: React.FC = () => {
   const update = (params: UpdateParams) => {
     const { scene, camera, renderer, uniforms, clock } = params;
     animationFrameId = requestAnimationFrame(() => update(params));
+    if (uniforms.time.value > 1000) uniforms.time.value = 0.0;
     uniforms.time.value += clock.getDelta();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
