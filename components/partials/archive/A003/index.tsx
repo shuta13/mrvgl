@@ -57,13 +57,25 @@ const A003: React.FC = () => {
     const context = canvas.getContext("2d");
     if (context !== null) {
       context.font = `bold ${232 * dpr}px Century Gothic `;
-      context.strokeStyle = "#777777";
-      context.lineWidth = 2;
-      context.strokeText("VAGUE", canvasWidth / 6, canvasHeight / 2);
-      context.textAlign = "center";
-      context.textBaseline = "middle";
+
+      // back
+      context.fillStyle = "#1a1a1a";
+      context.fillText("VAGUE", canvasWidth * 0.2, canvasHeight * 0.2);
+      context.fillStyle = "#444444";
+      context.fillText("VAGUE", canvasWidth * 0.15, canvasHeight * 0.4);
+
+      // center
+      // context.textAlign = "center";
+      // context.textBaseline = "middle";
+      context.fillStyle = "#999999";
+      context.fillText("VAGUE", canvasWidth * 0.1, canvasHeight * 0.6);
+
+      // front
+      context.fillStyle = "#cccccc";
+      context.fillText("VAGUE", canvasWidth * 0.05, canvasHeight * 0.8);
       context.fillStyle = "#ffffff";
-      context.fillText("VAGUE", canvasWidth / 2, canvasHeight / 2);
+      context.fillText("VAGUE", 0, canvasHeight * 1);
+
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
       return texture;
