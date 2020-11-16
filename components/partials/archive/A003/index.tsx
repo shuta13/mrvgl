@@ -157,6 +157,59 @@ const A003: React.FC = () => {
     renderer.setSize(width, height);
 
     update({ scene, camera, renderer, uniforms, clock });
+
+    //   // top
+    //   const topScene = new Scene();
+    //   const topCamera = new OrthographicCamera(-1, 1, 1, -1, 1, 1000);
+    //   topCamera.position.set(0, 0, 100);
+    //   topCamera.lookAt(topScene.position);
+    //   topScene.add(topCamera);
+
+    //   const topGeometry = new PlaneBufferGeometry(2, 2);
+
+    //   const topUniforms = {
+    //     time: {
+    //       type: "f",
+    //       value: 0.0,
+    //     },
+    //     resolution: {
+    //       type: "v2",
+    //       value: new Vector2(width * dpr, height * dpr),
+    //     },
+    //     texture: {
+    //       type: "t",
+    //       value: new CanvasTexture(canvas),
+    //     },
+    //   };
+
+    //   const topMaterial = new RawShaderMaterial({
+    //     uniforms: topUniforms,
+    //     vertexShader: topVert.default,
+    //     fragmentShader: topFrag.default,
+    //   });
+
+    //   const topMesh = new Mesh(topGeometry, topMaterial);
+    //   scene.add(topMesh);
+
+    //   const clock = new Clock();
+    //   clock.start();
+
+    //   const topRenderer = new WebGLRenderer({
+    //     antialias: false,
+    //     alpha: false,
+    //   });
+    //   topRenderer.setClearColor(0x1d1d1d);
+    //   topRenderer.setPixelRatio(dpr);
+    //   topRenderer.setSize(width, height);
+
+    //   update({
+    //     scene: topScene,
+    //     camera: topCamera,
+    //     renderer: topRenderer,
+    //     uniforms: topUniforms,
+    //     clock,
+    //   });
+    // };
   };
   return <canvas ref={onCanvasLoaded} />;
 };
