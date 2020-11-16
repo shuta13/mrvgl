@@ -111,12 +111,12 @@ void main() {
   if (mod(time * snoise(vec3(uv.x, uv.y, time * .2)), 2.) < 1. || mod(uv.y * snoise(vec3(uv.x, uv.y, uv.x / uv.y)) + time * 0.5, 3.) < 1.) {
     uv = vec2(floor(uv * size)) / size;
     color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
-    color.g += texture2D(texture, vec2(uv.x + .002, uv.y)).g;
+    color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
     color.b += texture2D(texture, vec2(uv.x, uv.y - .002)).b;
   } else {
     color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
     color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
-    color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
+    color.b += texture2D(texture, vec2(uv.x + .002, uv.y)).b;
   }
 
   // if (mod(uv.y, 1.) < 1. && mod(time * 0.1, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {

@@ -56,11 +56,14 @@ const A003: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = `italic bold ${128 * dpr}px Century Gothic `;
+      context.font = `bold ${200 * dpr}px Century Gothic `;
+      context.strokeStyle = "#333333";
+      context.lineWidth = 2;
+      context.strokeText("VAGUE", canvasWidth / 5, canvasHeight / 2);
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
-      context.fillText("Vagueness", canvasWidth / 2, canvasHeight / 2);
+      context.fillText("VAGUE", canvasWidth / 2, canvasHeight / 2);
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
       return texture;
