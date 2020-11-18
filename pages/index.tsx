@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import archives from "../utils/data/archives.json";
+import archives from "../store/data/archives.json";
 
 const ids: Array<string> = [];
 for (let i = 0; i < archives.length; i++) {

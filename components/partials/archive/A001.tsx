@@ -19,19 +19,18 @@ import { Refractor } from "three/examples/jsm/objects/Refractor";
 import { WaterRefractionShader } from "three/examples/jsm/shaders/WaterRefractionShader";
 const { GUI } = require("three/examples/jsm/libs/dat.gui.module");
 
-// types, interface
-type HandleResizeParams = {
+interface HandleResizeParams {
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
-};
+}
 
-type AnimateParams = {
+interface AnimateParams {
   scene: Scene;
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
   refractor: Refractor;
   clock: Clock;
-};
+}
 
 const handleResize = ({ camera, renderer }: HandleResizeParams) => {
   const width = window.innerWidth;

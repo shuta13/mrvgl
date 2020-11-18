@@ -13,37 +13,10 @@ import {
   WebGLRenderer,
 } from "three";
 import WebFontLoader from "webfontloader";
+import { CreateTextureParams, UpdateParams } from "../../../../shared/model";
 
 const vert = require("../A003/shader/index.vert");
 const frag = require("../A003/shader/index.frag");
-
-interface CreateTextureParams {
-  textureWidth: number;
-  textureHeight: number;
-  dpr: number;
-}
-
-interface UpdateParams {
-  scene: Scene;
-  camera: OrthographicCamera;
-  renderer: WebGLRenderer;
-  uniforms: {
-    time: {
-      type: string;
-      value: number;
-    };
-    resolution: {
-      type: string;
-      value: Vector2;
-    };
-    texture: {
-      type: string;
-      value?: CanvasTexture | null;
-      // value: Texture;
-    };
-  };
-  clock: Clock;
-}
 
 const A003: React.FC = () => {
   const [active, setActive] = useState(false);
@@ -91,7 +64,23 @@ const A003: React.FC = () => {
     }
   };
 
-  const update = (params: UpdateParams) => {
+  const update = (
+    params: UpdateParams<{
+      time: {
+        type: string;
+        value: number;
+      };
+      resolution: {
+        type: string;
+        value: Vector2;
+      };
+      texture: {
+        type: string;
+        value?: CanvasTexture | null;
+        // value: Texture;
+      };
+    }>
+  ) => {
     const { scene, camera, renderer, uniforms, clock } = params;
     animationFrameId = requestAnimationFrame(() => update(params));
     if (uniforms.time.value > 1000) uniforms.time.value = 0.0;

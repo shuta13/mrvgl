@@ -4,8 +4,8 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import { Header } from "../components/common/Header";
 import { Footer } from "../components/common/Footer";
-import { useGetPathName } from "../utils/hooks/useGetPathName";
-import archivesData from "../utils/data/archives.json";
+import { useGetPathName } from "../shared/hooks/useGetPathName";
+import archivesData from "../store/data/archives.json";
 import Overlay from "../components/common/Overlay";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {

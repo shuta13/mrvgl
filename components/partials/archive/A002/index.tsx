@@ -11,22 +11,11 @@ import {
   CanvasTexture,
 } from "three";
 import WebFontLoader from "webfontloader";
+import { CreateTextureParams, UpdateParams } from "../../../../shared/model";
 
-type CreateTextureParams = {
-  textureWidth: number;
-  textureHeight: number;
-  dpr: number;
-};
-type UpdateParams = {
-  scene: Scene;
-  camera: OrthographicCamera;
+interface HandleResizeParams {
   renderer: WebGLRenderer;
-  baseUniforms: any;
-  clock: Clock;
-};
-type HandleResizeParams = {
-  renderer: WebGLRenderer;
-  baseUniforms: {
+  uniforms: {
     time: {
       type: string;
       value: number;
@@ -40,7 +29,7 @@ type HandleResizeParams = {
       value?: CanvasTexture | null;
     };
   };
-};
+}
 
 const baseVert = require("./shader/index.vert");
 const baseFrag = require("./shader/index.frag");
@@ -91,18 +80,18 @@ const A002: React.FC = () => {
     scene,
     camera,
     renderer,
-    baseUniforms,
+    uniforms,
     clock,
-  }: UpdateParams) => {
+  }: UpdateParams<{ time: { type: string; value: number } }>) => {
     if (isNeedsStopUpdate) return;
     requestAnimationFrame(() =>
-      update({ scene, camera, renderer, baseUniforms, clock })
+      update({ scene, camera, renderer, uniforms, clock })
     );
-    baseUniforms.time.value += clock.getDelta();
+    uniforms.time.value += clock.getDelta();
     renderer.render(scene, camera);
   };
 
-  const handleResize = ({ renderer, baseUniforms }: HandleResizeParams) => {
+  const handleResize = ({ renderer, uniforms }: HandleResizeParams) => {
     isNeedsStopUpdate = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
     isNeedsStopUpdate = false;
@@ -120,7 +109,7 @@ const A002: React.FC = () => {
     const textureWidth = 1024;
     const textureHeight = 1024;
     const baseTexture = createTexture({ textureWidth, textureHeight, dpr });
-    const baseUniforms = {
+    const uniforms = {
       time: {
         type: "f",
         value: 0.0,
@@ -135,7 +124,7 @@ const A002: React.FC = () => {
       },
     };
     const material = new RawShaderMaterial({
-      uniforms: baseUniforms,
+      uniforms: uniforms,
       vertexShader: baseVert.default,
       fragmentShader: baseFrag.default,
     });
@@ -150,9 +139,9 @@ const A002: React.FC = () => {
     renderer.setClearColor(0x1d1d1d);
     renderer.setPixelRatio(dpr);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    update({ scene, camera, renderer, baseUniforms, clock });
+    update({ scene, camera, renderer, uniforms, clock });
     window.addEventListener("resize", () =>
-      handleResize({ renderer, baseUniforms })
+      handleResize({ renderer, uniforms })
     );
   };
   useEffect(() => {
