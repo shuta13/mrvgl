@@ -56,7 +56,7 @@ const A003: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = `bold ${232 * dpr}px Century Gothic `;
+      context.font = `bold italic ${232 * dpr}px Josefin Sans`;
 
       // back
       context.fillStyle = "#1a1a1a";

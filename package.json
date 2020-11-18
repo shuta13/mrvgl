@@ -13,11 +13,13 @@
     "next": "9.3.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "three": "^0.115.0"
+    "three": "^0.115.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
+    "@types/webfontloader": "^1.6.32",
     "dotenv": "^8.2.0",
     "next-images": "^1.4.0",
     "prettier": "^2.0.4",

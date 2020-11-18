@@ -1,8 +1,17 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import A003 from "../../components/partials/archive/A003";
+import WebFontLoader from "webfontloader";
 
 const _003: React.FC = () => {
+  const [active, setActive] = useState(false);
+  WebFontLoader.load({
+    google: {
+      families: ["Josefin Sans"],
+    },
+    active: () => setActive(true),
+  });
+
   return (
     <>
       <Head>
@@ -12,7 +21,7 @@ const _003: React.FC = () => {
           content="https://maraviglia.now.sh/og/003.png"
         />
       </Head>
-      <A003 />
+      {active && <A003 />}
     </>
   );
 };
