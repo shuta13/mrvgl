@@ -1,11 +1,4 @@
-import {
-  CanvasTexture,
-  Clock,
-  OrthographicCamera,
-  Scene,
-  Vector2,
-  WebGLRenderer,
-} from "three";
+import { Clock, OrthographicCamera, Scene, WebGLRenderer } from "three";
 
 export interface CreateTextureParams {
   textureWidth: number;
