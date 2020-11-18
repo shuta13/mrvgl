@@ -1,6 +1,10 @@
 import Head from "next/head";
 import React from "react";
-import A003 from "../../components/archive/A003";
+import dynamic from "next/dynamic";
+
+const A003 = dynamic(() => import("../../components/archive/A003"), {
+  ssr: false,
+});
 
 const _003: React.FC = () => {
   return (
