@@ -19,21 +19,30 @@ import {
 const vert = require("./shader/index.vert");
 const frag = require("./shader/index.frag");
 
-export const A004: React.FC = () => {
+const A004: React.FC = () => {
   let animationFrameId = 0;
   let isNeedsStopUpdate = false;
 
+  // const gridImage = new Image();
+
   const createTexture = (params: CreateTextureParams) => {
     const { textureWidth, textureHeight, dpr } = params;
+
+    // gridImage.src = require("../../../assets/image/004/grid.png");
+
     const canvas = document.createElement("canvas");
     const canvasWidth = textureWidth * dpr;
     const canvasHeight = textureHeight * dpr;
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
-    if (!context) {
-    }
+    if (context !== null) {
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, 100, 100);
 
+      // context.globalCompositeOperation = "destination-over";
+      // context.drawImage(gridImage, canvasWidth * 0.5, canvasHeight * 0.5);
+    }
     const texture = new CanvasTexture(canvas);
     texture.needsUpdate = true;
     return texture;
@@ -56,6 +65,7 @@ export const A004: React.FC = () => {
     isNeedsStopUpdate = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
+    isNeedsStopUpdate = false;
   };
 
   useEffect(() => {
@@ -98,8 +108,8 @@ export const A004: React.FC = () => {
 
     const material = new RawShaderMaterial({
       uniforms: uniforms,
-      vertexShader: "",
-      fragmentShader: "",
+      vertexShader: vert.default,
+      fragmentShader: frag.default,
     });
 
     const mesh = new Mesh(geometry, material);
@@ -126,3 +136,5 @@ export const A004: React.FC = () => {
 
   return <canvas ref={onCanvasLoaded} />;
 };
+
+export default A004;

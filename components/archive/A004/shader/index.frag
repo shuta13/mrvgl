@@ -101,9 +101,9 @@ void main() {
   // color = texture2D(u_texture, uv).rgb;
 
   // rgb shift
-  color.r = texture2D(texture, vec2(uv.x + .035, uv.y)).r;
-  color.g = texture2D(texture, vec2(uv.x, uv.y - .015)).g;
-  color.b = texture2D(texture, vec2(uv.x - .035, uv.y)).b;
+  color.r = texture2D(texture, vec2(uv.x, uv.y)).r;
+  color.g = texture2D(texture, vec2(uv.x, uv.y)).g;
+  color.b = texture2D(texture, vec2(uv.x, uv.y)).b;
 
   // color -= snoise(vec3(uv.x, uv.y, 1.9));
 
