@@ -11,25 +11,11 @@ import {
   CanvasTexture,
 } from "three";
 import WebFontLoader from "webfontloader";
-import { CreateTextureParams, UpdateParams } from "../../../../shared/model";
-
-interface HandleResizeParams {
-  renderer: WebGLRenderer;
-  uniforms: {
-    time: {
-      type: string;
-      value: number;
-    };
-    resolution: {
-      type: string;
-      value: Vector2;
-    };
-    texture: {
-      type: string;
-      value?: CanvasTexture | null;
-    };
-  };
-}
+import {
+  CreateTextureParams,
+  HandleResizeParams,
+  UpdateParams,
+} from "../../../shared/model";
 
 const baseVert = require("./shader/index.vert");
 const baseFrag = require("./shader/index.frag");
@@ -91,9 +77,11 @@ const A002: React.FC = () => {
     renderer.render(scene, camera);
   };
 
-  const handleResize = ({ renderer, uniforms }: HandleResizeParams) => {
+  const handleResize = (params: HandleResizeParams<{}>) => {
+    const { scene, camera, renderer, uniforms } = params;
     isNeedsStopUpdate = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.render(scene, camera);
     isNeedsStopUpdate = false;
   };
   const onCanvasLoaded = (canvas: HTMLCanvasElement) => {
@@ -141,7 +129,7 @@ const A002: React.FC = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     update({ scene, camera, renderer, uniforms, clock });
     window.addEventListener("resize", () =>
-      handleResize({ renderer, uniforms })
+      handleResize({ scene, camera, renderer, uniforms })
     );
   };
   useEffect(() => {

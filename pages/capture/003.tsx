@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import A003 from "../../components/partials/archive/A003";
+import A003 from "../../components/archive/A003";
 
 const _003: React.FC = () => {
   return (

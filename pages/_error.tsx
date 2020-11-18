@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import _Error from "../components/partials/_Error";
+import _Error from "../components/_error";
 
 interface Props {
   statusCode?: number;

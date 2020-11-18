@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
 
-const A002 = dynamic(() => import("../../components/partials/archive/A002"), {
+const A002 = dynamic(() => import("../../components/archive/A002"), {
   ssr: false,
 });
 

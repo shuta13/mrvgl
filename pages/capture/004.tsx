@@ -1,5 +1,5 @@
 import React from "react";
-import { A004 } from "../../components/partials/archive/A004";
+import { A004 } from "../../components/archive/A004";
 
 const _004: React.FC = () => {
   return <A004 />;

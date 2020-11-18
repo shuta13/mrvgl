@@ -13,7 +13,11 @@ import {
   WebGLRenderer,
 } from "three";
 import WebFontLoader from "webfontloader";
-import { CreateTextureParams, UpdateParams } from "../../../../shared/model";
+import {
+  CreateTextureParams,
+  HandleResizeParams,
+  UpdateParams,
+} from "../../../shared/model";
 
 const vert = require("../A003/shader/index.vert");
 const frag = require("../A003/shader/index.frag");
@@ -28,6 +32,7 @@ const A003: React.FC = () => {
   });
 
   let animationFrameId = 0;
+  let isNeedsStopUpdate = false;
 
   const createTexture = (params: CreateTextureParams) => {
     const { textureWidth, textureHeight, dpr } = params;
@@ -81,6 +86,7 @@ const A003: React.FC = () => {
       };
     }>
   ) => {
+    if (isNeedsStopUpdate) return;
     const { scene, camera, renderer, uniforms, clock } = params;
     animationFrameId = requestAnimationFrame(() => update(params));
     if (uniforms.time.value > 1000) uniforms.time.value = 0.0;
@@ -89,8 +95,19 @@ const A003: React.FC = () => {
     renderer.render(scene, camera);
   };
 
+  const handleResize = (params: HandleResizeParams<{}>) => {
+    const { scene, camera, renderer, uniforms } = params;
+    isNeedsStopUpdate = true;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.render(scene, camera);
+    isNeedsStopUpdate = false;
+  };
+
   useEffect(() => {
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", () => handleResize);
+    };
   }, []);
 
   const onCanvasLoaded = (canvas: HTMLCanvasElement) => {
@@ -171,6 +188,10 @@ const A003: React.FC = () => {
     renderer.setSize(width, height);
 
     update({ scene, camera, renderer, uniforms, clock });
+
+    window.addEventListener("resize", () =>
+      handleResize({ scene, camera, renderer, uniforms })
+    );
 
     //   // top
     //   const topScene = new Scene();
