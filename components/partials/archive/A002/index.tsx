@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Scene,
   OrthographicCamera,
@@ -10,6 +10,7 @@ import {
   Clock,
   CanvasTexture,
 } from "three";
+import WebFontLoader from "webfontloader";
 
 type CreateTextureParams = {
   textureWidth: number;
@@ -45,6 +46,14 @@ const baseVert = require("./shader/index.vert");
 const baseFrag = require("./shader/index.frag");
 
 const A002: React.FC = () => {
+  const [active, setActive] = useState(false);
+  WebFontLoader.load({
+    google: {
+      families: ["EB Garamond"],
+    },
+    active: () => setActive(true),
+  });
+
   let isNeedsStopUpdate = false;
 
   const createTexture = ({
@@ -59,7 +68,7 @@ const A002: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      context.font = `${128 * dpr}px serif`;
+      context.font = `${128 * dpr}px EB Garamond`;
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
@@ -150,9 +159,7 @@ const A002: React.FC = () => {
     return () => window.removeEventListener("resize", () => handleResize);
   }, []);
   return (
-    <div className="container">
-      <canvas ref={onCanvasLoaded} />
-    </div>
+    <div className="container">{active && <canvas ref={onCanvasLoaded} />}</div>
   );
 };
 

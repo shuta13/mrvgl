@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CanvasTexture,
   Clock,
@@ -12,6 +12,7 @@ import {
   Vector2,
   WebGLRenderer,
 } from "three";
+import WebFontLoader from "webfontloader";
 
 const vert = require("../A003/shader/index.vert");
 const frag = require("../A003/shader/index.frag");
@@ -45,6 +46,14 @@ interface UpdateParams {
 }
 
 const A003: React.FC = () => {
+  const [active, setActive] = useState(false);
+  WebFontLoader.load({
+    google: {
+      families: ["Josefin Sans"],
+    },
+    active: () => setActive(true),
+  });
+
   let animationFrameId = 0;
 
   const createTexture = (params: CreateTextureParams) => {
@@ -227,7 +236,7 @@ const A003: React.FC = () => {
     //   });
     // };
   };
-  return <canvas ref={onCanvasLoaded} />;
+  return <>{active && <canvas ref={onCanvasLoaded} />}</>;
 };
 
 export default A003;

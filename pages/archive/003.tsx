@@ -1,17 +1,12 @@
 import Head from "next/head";
-import React, { useState } from "react";
-import A003 from "../../components/partials/archive/A003";
-import WebFontLoader from "webfontloader";
+import React from "react";
+import dynamic from "next/dynamic";
+
+const A003 = dynamic(() => import("../../components/partials/archive/A003"), {
+  ssr: false,
+});
 
 const _003: React.FC = () => {
-  const [active, setActive] = useState(false);
-  WebFontLoader.load({
-    google: {
-      families: ["Josefin Sans"],
-    },
-    active: () => setActive(true),
-  });
-
   return (
     <>
       <Head>
@@ -21,7 +16,7 @@ const _003: React.FC = () => {
           content="https://maraviglia.now.sh/og/003.png"
         />
       </Head>
-      {active && <A003 />}
+      <A003 />
     </>
   );
 };
