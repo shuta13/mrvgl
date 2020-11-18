@@ -6,7 +6,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write './{components,pages}/**/*.{ts,tsx}'"
+    "format": "prettier --write './{components,pages}/**/*.{ts,tsx}'",
+    "cp": "cp -rf ./pages/archive/* ./pages/capture"
   },
   "dependencies": {
     "next": "9.3.4",
