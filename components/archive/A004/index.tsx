@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CanvasTexture,
   Clock,
@@ -15,11 +15,20 @@ import {
   HandleResizeParams,
   UpdateParams,
 } from "../../../shared/model";
+import WebFontLoader from "webfontloader";
 
 const vert = require("./shader/index.vert");
 const frag = require("./shader/index.frag");
 
 const A004: React.FC = () => {
+  const [active, setActive] = useState(false);
+  WebFontLoader.load({
+    google: {
+      families: ["Text Me One"],
+    },
+    active: () => setActive(true),
+  });
+
   let animationFrameId = 0;
   let isNeedsStopUpdate = false;
 
@@ -37,8 +46,14 @@ const A004: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
+      const text = "2021";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+
+      context.font = `bold ${400 * dpr}px Text Me One`;
       context.fillStyle = "#ffffff";
-      context.fillRect(0, 0, 100, 100);
+      // context.fillStyle = `rgba${[0, 0, 0, 0]}`;
+      context.fillText(text, canvasWidth * 0.5, canvasHeight * 0.5);
 
       // context.globalCompositeOperation = "destination-over";
       // context.drawImage(gridImage, canvasWidth * 0.5, canvasHeight * 0.5);
@@ -96,13 +111,9 @@ const A004: React.FC = () => {
         type: "f",
         value: 0.0,
       },
-      resolution: {
-        type: "v2",
-        value: new Vector2(width * dpr, height * dpr),
-      },
       texture: {
         type: "t",
-        value: createTexture({ textureHeight: 1024, textureWidth: 1024, dpr }),
+        value: createTexture({ textureHeight: 1024, textureWidth: 2048, dpr }),
       },
     };
 
@@ -134,7 +145,7 @@ const A004: React.FC = () => {
     );
   };
 
-  return <canvas ref={onCanvasLoaded} />;
+  return <>{active && <canvas ref={onCanvasLoaded} />}</>;
 };
 
 export default A004;

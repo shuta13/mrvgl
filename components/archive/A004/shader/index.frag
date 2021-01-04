@@ -2,9 +2,10 @@
 precision highp float;
 #endif
 
-uniform vec2 resolution;
 uniform float time;
 uniform sampler2D texture;
+
+varying vec2 vUv;
 
 // // Description : Array and textureless GLSL 2D/3D/4D simplex noise functions.
 //      Author : Ian McEwan, Ashima Arts.
@@ -90,25 +91,33 @@ float snoise(vec3 v) {
 }
 
 void main() {
-  vec2 uv = gl_FragCoord.xy / resolution;
-  vec3 color = vec3(.085);
-
-  // mosaic
-  // float size = 160.;
-  // uv = vec2(floor(uv * size)) / size;
-
-  // neutral
-  // color = texture2D(u_texture, uv).rgb;
-
+  vec2 uv = vUv;
+  vec3 color = vec3(0.085);
   // rgb shift
-  color.r = texture2D(texture, vec2(uv.x, uv.y)).r;
+  color.r = texture2D(texture, vec2(uv.x + 0.005 * step(sin(time * 2.),0.5), uv.y - 0.005 * step(sin(time * 4.),0.5))).r;
   color.g = texture2D(texture, vec2(uv.x, uv.y)).g;
   color.b = texture2D(texture, vec2(uv.x, uv.y)).b;
 
-  // color -= snoise(vec3(uv.x, uv.y, 1.9));
+  vec2 center = vec2(0.5, 0.5);
+  vec2 pos = center - uv;
+
+  float dist = 1.0 / length(pos);
+  dist *= 0.5;
+  dist = pow(dist, 0.2);
+
+  color *= dist * vec3(0.5373, 0.251, 1.0);
+  color *= 1.0 - exp(-color);
 
   // glitch
-  // if (mod(uv.y, 1.) < 1. && mod(time * 0.1, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {
+
+  // // mosaic
+  // float size = 160.;
+  // uv = vec2(floor(uv * size)) / size;
+
+  // // neutral
+  // color = texture2D(texture, uv).rgb;
+
+  // if (mod(time * 2., 3.) > 2.) {
   //   uv = vec2(floor(uv * size)) / size;
   //   color.r += texture2D(texture, vec2(uv.x, uv.y + .002)).r;
   //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
