@@ -7,10 +7,10 @@ export const Footer: React.FC<{
   return (
     <div className="FooterWrap">
       <div className="FooterTextHeader">
-        {archivesData[pathData.index].id}
+        {archivesData[pathData.index].desc}
       </div>
       <div className="FooterText">{archivesData[pathData.index].createdAt}</div>
-      <div className="FooterText">{archivesData[pathData.index].desc}</div>
+      <div className="FooterText">{archivesData[pathData.index].id}</div>
     </div>
   );
 };
