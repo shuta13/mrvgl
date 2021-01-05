@@ -90,23 +90,39 @@ float snoise(vec3 v) {
                                 dot(p2,x2), dot(p3,x3) ) );
 }
 
+// float minBright = 0.5;
+
+#define SAMPLE_COUNT 15
+uniform vec2 offsetHorizontal[SAMPLE_COUNT];
+uniform vec2 offsetVertical[SAMPLE_COUNT];
+uniform float weightHorizontal[SAMPLE_COUNT];
+uniform float weightVertical[SAMPLE_COUNT];
+
+bool isVertical;
+
 void main() {
   vec2 uv = vUv;
-  vec3 color = vec3(0.085);
-  // rgb shift
-  color.r = texture2D(texture, vec2(uv.x + 0.005 * step(sin(time * 2.),0.5), uv.y - 0.005 * step(sin(time * 4.),0.5))).r;
-  color.g = texture2D(texture, vec2(uv.x, uv.y)).g;
-  color.b = texture2D(texture, vec2(uv.x, uv.y)).b;
 
-  vec2 center = vec2(0.5, 0.5);
-  vec2 pos = center - uv;
+  // 高輝度部の抽出
+  // vec3 texel = max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb);
 
-  float dist = 1.0 / length(pos);
-  dist *= 0.5;
-  dist = pow(dist, 0.2);
+  vec4 color = vec4(0.0);
+  if (isVertical) {
+    for (int i = 0; i < SAMPLE_COUNT; i++) {
+      color += texture2D(texture, uv + offsetVertical[i]) * weightVertical[i];
+    }
+  } else {
+    for (int i = 0; i < SAMPLE_COUNT; i++) {
+      color += texture2D(texture, uv + offsetHorizontal[i]) * weightHorizontal[i];
+    }
+  }
 
-  color *= dist * vec3(0.5373, 0.251, 1.0);
-  color *= 1.0 - exp(-color);
+
+  // vec3 color = vec3(0.0);
+  // // rgb shift
+  // color.r = texture2D(texture, vec2(uv.x, uv.y)).r;
+  // color.g = texture2D(texture, vec2(uv.x, uv.y)).g;
+  // color.b = texture2D(texture, vec2(uv.x, uv.y)).b;
 
   // glitch
 
@@ -137,5 +153,5 @@ void main() {
   //   color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
   // }
 
-  gl_FragColor = vec4(color, 1.);
+  gl_FragColor = vec4(color.rgb, 1.0);
 }

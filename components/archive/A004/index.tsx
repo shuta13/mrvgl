@@ -97,6 +97,48 @@ const A004: React.FC = () => {
     const height = window.innerHeight;
     const dpr = window.devicePixelRatio;
 
+    // calc offset, weight
+    const bloomConfig = {
+      sampleCount: 15,
+    };
+    const offset = {
+      horizontal: new Float32Array(),
+      vertical: new Float32Array(),
+      tmpHorizontal: [0],
+      tmpVertical: [0],
+      vector2Horizontal: [new Vector2(0, 0)],
+      vector2Vertical: [new Vector2(0, 0)],
+    };
+    const weight = {
+      horizontal: [0],
+      vertical: [0],
+      totalHorizontal: 0,
+      totalVertical: 0,
+    };
+    for (let i = 0; i < bloomConfig.sampleCount; i++) {
+      const p = (i - (bloomConfig.sampleCount - 1) * 0.5) * 0.0006;
+
+      offset.tmpHorizontal[i] = p;
+      weight.horizontal[i] = Math.exp((-p * p) / 2) / Math.sqrt(Math.PI * 2);
+      weight.totalHorizontal += weight.horizontal[i];
+
+      offset.tmpVertical[i] = p;
+      weight.vertical[i] = Math.exp((-p * p) / 2) / Math.sqrt(Math.PI * 2);
+      weight.totalVertical += weight.vertical[i];
+    }
+    weight.horizontal.map((value, index) => {
+      weight.horizontal[index] = value / weight.totalHorizontal;
+    });
+    weight.vertical.map((value, index) => {
+      weight.vertical[index] = value / weight.totalVertical;
+    });
+    offset.tmpHorizontal.map((value, index) => {
+      offset.vector2Horizontal[index] = new Vector2(value, 0);
+    });
+    offset.tmpVertical.map((value, index) => {
+      offset.vector2Vertical[index] = new Vector2(0, value);
+    });
+
     const scene = new Scene();
 
     const camera = new OrthographicCamera(-1, 1, 1, -1, 1, 1000);
@@ -114,6 +156,22 @@ const A004: React.FC = () => {
       texture: {
         type: "t",
         value: createTexture({ textureHeight: 1024, textureWidth: 2048, dpr }),
+      },
+      offsetHorizontal: {
+        type: "v2v",
+        value: offset.vector2Horizontal,
+      },
+      offsetVertical: {
+        type: "v2v",
+        value: offset.vector2Vertical,
+      },
+      weightHorizontal: {
+        type: "fv1",
+        value: weight.horizontal,
+      },
+      weightVertical: {
+        type: "fv1",
+        value: weight.vertical,
       },
     };
 
