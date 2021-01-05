@@ -26,7 +26,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       <Component {...pageProps} />
       {!isCapture && (
         <>
-          {isArchives ? (
+          {/* {isArchives ? (
             <Footer pathData={pathData} archivesData={archivesData} />
           ) : (
             <div className="ExternalLinkWrap">
@@ -39,7 +39,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
                 Author
               </a>
             </div>
-          )}
+          )} */}
         </>
       )}
       {isArchives ? (
@@ -53,7 +53,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
           )}
         </>
       ) : null}
-      {!isCapture && <Header />}
+      {!isCapture && process.env.ENV !== "dev" && <Header />}
     </>
   );
 };

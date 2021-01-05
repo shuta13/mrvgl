@@ -102,14 +102,10 @@ uniform bool isVertical;
 
 void main() {
   vec2 uv = vUv;
+  vec4 color = vec4(0.085);
 
   // ネオン管(bloom)
   // @see https://qiita.com/edo_m18/items/c43177c0a18a2ea210b6
-
-  // 高輝度部の抽出
-  // vec3 texel = max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb);
-
-  vec4 color = vec4(0.085);
   if (isVertical) {
     for (int i = 0; i < SAMPLE_COUNT; i++) {
       color += texture2D(texture, uv + offsetVertical[i]) * weightVertical[i];
@@ -121,7 +117,16 @@ void main() {
   }
 
   vec4 texel = vec4(0.0);
+
+  // 高輝度部の抽出
+  if (mod(time * snoise(vec3(time * 0.2)), 5.0) > 3.0) {
+    minBright = 0.5;
+  } else {
+    minBright = 0.05;
+  }
   texel = vec4(max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb), 1.0);
+  
+  // 乗算
   texel += color;
 
   gl_FragColor = texel;

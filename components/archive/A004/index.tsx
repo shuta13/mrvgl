@@ -122,7 +122,7 @@ const A004: React.FC = () => {
       totalVertical: 0,
     };
     for (let i = 0; i < bloomConfig.sampleCount; i++) {
-      const p = (i - (bloomConfig.sampleCount - 1) * 0.5) * 0.0006;
+      const p = (i - (bloomConfig.sampleCount - 1) * 0.5) * 0.00065;
 
       offset.tmpHorizontal[i] = p;
       weight.horizontal[i] = Math.exp((-p * p) / 2) / Math.sqrt(Math.PI * 2);
