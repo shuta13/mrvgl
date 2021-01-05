@@ -121,6 +121,12 @@ void main() {
   }
 
   vec4 texel = vec4(0.0);
+  // 高輝度部の抽出
+  if (mod(time * snoise(vec3(time * 0.2)), 5.0) > 3.0) {
+    minBright = 0.5;
+  } else {
+    minBright = 0.05;
+  }
   texel = vec4(max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb), 1.0);
   texel += color;
 
