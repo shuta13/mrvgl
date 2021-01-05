@@ -1,41 +1,14 @@
-.HeaderWrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  // width: 100%;
-  height: 80px;
-  background: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
 .HeaderTitle {
-  height: 48px;
-  width: 100%;
-  max-width: 420px;
+  position: fixed;
+  top: 32px;
+  left: 32px;
   white-space: nowrap;
   color: #c2c2c2;
   text-decoration: none;
   font-size: 4.5rem;
   font-family: "Song Myung", serif;
-  margin-left: 1em;
   letter-spacing: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
-}
-
-@media screen and (max-width: 768px) {
-  .HeaderWrap {
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .HeaderTitle {
-    margin: 0;
-    margin-top: 2em;
-    margin-left: 2em;
-    margin-right: 2em;
-  }
 }

@@ -3,10 +3,8 @@ import Link from "next/link";
 
 export const Header: React.FC = () => {
   return (
-    <div className="HeaderWrap">
-      <Link href="/">
-        <a className="HeaderTitle">Maraviglia</a>
-      </Link>
-    </div>
+    <Link href="/">
+      <a className="HeaderTitle">Maraviglia</a>
+    </Link>
   );
 };
