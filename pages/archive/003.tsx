@@ -11,10 +11,7 @@ const _003: React.FC = () => {
     <>
       <Head>
         <meta property="og:description" content="Maraviglia" />
-        <meta
-          property="og:image"
-          content="https://maraviglia.now.sh/og/003.png"
-        />
+        <meta property="og:image" content="/og-images/003.png" />
       </Head>
       <A003 />
     </>
