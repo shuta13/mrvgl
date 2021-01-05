@@ -102,6 +102,10 @@ uniform bool isVertical;
 
 void main() {
   vec2 uv = vUv;
+  vec4 color = vec4(0.085);
+
+  color.r = snoise(vec3(uv.x, uv.y, time * 0.5)) * 0.4;
+  color.b = snoise(vec3(uv.x, uv.y, time * 0.5)) * 0.4;
 
   // ネオン管(bloom)
   // @see https://qiita.com/edo_m18/items/c43177c0a18a2ea210b6
@@ -109,7 +113,6 @@ void main() {
   // 高輝度部の抽出
   // vec3 texel = max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb);
 
-  vec4 color = vec4(0.085);
   if (isVertical) {
     for (int i = 0; i < SAMPLE_COUNT; i++) {
       color += texture2D(texture, uv + offsetVertical[i]) * weightVertical[i];
