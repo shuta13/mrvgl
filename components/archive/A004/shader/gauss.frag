@@ -90,7 +90,7 @@ float snoise(vec3 v) {
                                 dot(p2,x2), dot(p3,x3) ) );
 }
 
-// float minBright = 0.5;
+float minBright = 0.1;
 
 #define SAMPLE_COUNT 15
 uniform vec2 offsetHorizontal[SAMPLE_COUNT];
@@ -98,15 +98,18 @@ uniform vec2 offsetVertical[SAMPLE_COUNT];
 uniform float weightHorizontal[SAMPLE_COUNT];
 uniform float weightVertical[SAMPLE_COUNT];
 
-bool isVertical;
+uniform bool isVertical;
 
 void main() {
   vec2 uv = vUv;
 
+  // ネオン管(bloom)
+  // @see https://qiita.com/edo_m18/items/c43177c0a18a2ea210b6
+
   // 高輝度部の抽出
   // vec3 texel = max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb);
 
-  vec4 color = vec4(0.0);
+  vec4 color = vec4(0.085);
   if (isVertical) {
     for (int i = 0; i < SAMPLE_COUNT; i++) {
       color += texture2D(texture, uv + offsetVertical[i]) * weightVertical[i];
@@ -117,41 +120,9 @@ void main() {
     }
   }
 
+  vec4 texel = vec4(0.0);
+  texel = vec4(max(vec3(0.0), (texture2D(texture, uv) - minBright).rgb), 1.0);
+  texel += color;
 
-  // vec3 color = vec3(0.0);
-  // // rgb shift
-  // color.r = texture2D(texture, vec2(uv.x, uv.y)).r;
-  // color.g = texture2D(texture, vec2(uv.x, uv.y)).g;
-  // color.b = texture2D(texture, vec2(uv.x, uv.y)).b;
-
-  // glitch
-
-  // // mosaic
-  // float size = 160.;
-  // uv = vec2(floor(uv * size)) / size;
-
-  // // neutral
-  // color = texture2D(texture, uv).rgb;
-
-  // if (mod(time * 2., 3.) > 2.) {
-  //   uv = vec2(floor(uv * size)) / size;
-  //   color.r += texture2D(texture, vec2(uv.x, uv.y + .002)).r;
-  //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
-  //   color.b += texture2D(texture, vec2(uv.x, uv.y - .002)).b;
-  // } else {
-  //   color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
-  //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
-  //   color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
-  // }
-
-  // if (mod(uv.y, 1.) < .5 && mod(time, 2.) < 2. * snoise(vec3(uv.x, uv.y, time * .5))) {
-  //   uv = vec2(floor(uv * size)) / size;
-  //   color += texture2D(texture, vec2(uv.x - .01, uv.y)).rgb;
-  // } else {
-  //   color.r += texture2D(texture, vec2(uv.x + .002, uv.y)).r;
-  //   color.g += texture2D(texture, vec2(uv.x, uv.y)).g;
-  //   color.b += texture2D(texture, vec2(uv.x - .002, uv.y)).b;
-  // }
-
-  gl_FragColor = vec4(color.rgb, 1.0);
+  gl_FragColor = texel;
 }

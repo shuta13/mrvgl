@@ -17,14 +17,14 @@ import {
 } from "../../../shared/model";
 import WebFontLoader from "webfontloader";
 
-const vert = require("./shader/index.vert");
-const frag = require("./shader/index.frag");
+const vertGauss = require("./shader/gauss.vert");
+const fragGauss = require("./shader/gauss.frag");
 
 const A004: React.FC = () => {
   const [active, setActive] = useState(false);
   WebFontLoader.load({
     google: {
-      families: ["Text Me One"],
+      families: ["Text Me One", "Astloch"],
     },
     active: () => setActive(true),
   });
@@ -46,17 +46,20 @@ const A004: React.FC = () => {
     canvas.height = canvasHeight;
     const context = canvas.getContext("2d");
     if (context !== null) {
-      const text = "2021";
       context.textAlign = "center";
-      context.textBaseline = "middle";
+      // context.textBaseline = "middle";
 
-      context.font = `bold ${400 * dpr}px Text Me One`;
-      context.fillStyle = "#ffffff";
-      // context.fillStyle = `rgba${[0, 0, 0, 0]}`;
-      context.fillText(text, canvasWidth * 0.5, canvasHeight * 0.5);
+      context.font = `bold italic ${160 * dpr}px Astloch`;
+      context.fillStyle = "#69e5ff"; // 青
+      context.fillText(
+        "Happy New Year",
+        canvasWidth * 0.5,
+        canvasHeight * 0.35
+      );
 
-      // context.globalCompositeOperation = "destination-over";
-      // context.drawImage(gridImage, canvasWidth * 0.5, canvasHeight * 0.5);
+      context.font = `${400 * dpr}px Text Me One`;
+      context.fillStyle = "#e36bee"; // ピンク
+      context.fillText("2021", canvasWidth * 0.5, canvasHeight * 0.7);
     }
     const texture = new CanvasTexture(canvas);
     texture.needsUpdate = true;
@@ -98,6 +101,9 @@ const A004: React.FC = () => {
     const dpr = window.devicePixelRatio;
 
     // calc offset, weight
+    /**
+     * @see {https://qiita.com/edo_m18/items/c43177c0a18a2ea210b6}
+     */
     const bloomConfig = {
       sampleCount: 15,
     };
@@ -173,12 +179,16 @@ const A004: React.FC = () => {
         type: "fv1",
         value: weight.vertical,
       },
+      isVertical: {
+        type: "b",
+        value: false,
+      },
     };
 
     const material = new RawShaderMaterial({
       uniforms: uniforms,
-      vertexShader: vert.default,
-      fragmentShader: frag.default,
+      vertexShader: vertGauss.default,
+      fragmentShader: fragGauss.default,
     });
 
     const mesh = new Mesh(geometry, material);
