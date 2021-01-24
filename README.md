@@ -1,6 +1,6 @@
 # Maraviglia
 
-> WebGL Projects Archives
+> WebGL Projects Archive
 
 ### Archives List
 
