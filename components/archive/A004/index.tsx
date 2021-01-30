@@ -37,8 +37,6 @@ const A004: React.FC = () => {
   const createTexture = (params: CreateTextureParams) => {
     const { textureWidth, textureHeight, dpr } = params;
 
-    // gridImage.src = require("../../../assets/image/004/grid.png");
-
     const canvas = document.createElement("canvas");
     const canvasWidth = textureWidth * dpr;
     const canvasHeight = textureHeight * dpr;
@@ -104,8 +102,6 @@ const A004: React.FC = () => {
       sampleCount: 15,
     };
     const offset = {
-      horizontal: new Float32Array(),
-      vertical: new Float32Array(),
       tmpHorizontal: [0],
       tmpVertical: [0],
       vector2Horizontal: [new Vector2(0, 0)],
