@@ -3,22 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "format": "prettier --write './{components,pages}/**/*.{ts,tsx}'",
     "cp": "cp -rf ./pages/archive/* ./pages/capture"
   },
   "dependencies": {
-    "next": "9.3.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "next": "9.5.4",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "three": "^0.115.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@types/node": "^13.11.0",
-    "@types/react": "^16.9.32",
+    "@types/node": "13.7.0",
+    "@types/react": "16.9.20",
     "@types/webfontloader": "^1.6.32",
     "dotenv": "^8.2.0",
     "next-images": "^1.4.0",
