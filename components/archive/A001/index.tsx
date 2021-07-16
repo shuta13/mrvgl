@@ -131,7 +131,7 @@ const A001: React.FC = () => {
 
     renderer.render(scene, camera);
 
-    if (process.env.ENV === 'dev') {
+    if (process.env.NODE_ENV === 'development') {
       new OrbitControls(camera, renderer.domElement);
     }
 
@@ -149,7 +149,7 @@ const A001: React.FC = () => {
   return (
     <>
       <div className="container">
-        {process.env.NODE_ENV === 'development' && <Leva />}
+        {/* {process.env.NODE_ENV === 'development' && <Leva />} */}
         <canvas className="canvas" ref={onCanvasLoaded}></canvas>
       </div>
     </>
