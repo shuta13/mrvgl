@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   Scene,
   PerspectiveCamera,
@@ -13,11 +13,9 @@ import {
   TextureLoader,
   RepeatWrapping,
   Clock,
-} from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Refractor } from "three/examples/jsm/objects/Refractor";
-import { WaterRefractionShader } from "three/examples/jsm/shaders/WaterRefractionShader";
-const { GUI } = require("three/examples/jsm/libs/dat.gui.module");
+} from 'three';
+import { OrbitControls, Refractor, WaterRefractionShader } from 'three-stdlib';
+const { GUI } = require('three/examples/jsm/libs/dat.gui.module');
 
 interface HandleResizeParams {
   camera: PerspectiveCamera;
@@ -51,7 +49,7 @@ const animate = ({
   window.requestAnimationFrame(() =>
     animate({ scene, camera, renderer, refractor, clock })
   );
-  (refractor.material as any).uniforms["time"].value += clock.getDelta();
+  (refractor.material as any).uniforms['time'].value += clock.getDelta();
   renderer.render(scene, camera);
 };
 
@@ -62,7 +60,7 @@ const A001: React.FC = () => {
     }
 
     // init gui
-    if (process.env.ENV === "dev") {
+    if (process.env.ENV === 'dev') {
       const gui = new GUI();
     }
 
@@ -97,13 +95,13 @@ const A001: React.FC = () => {
     scene.add(refractor);
 
     const dudvMap = new TextureLoader().load(
-      require("../../../assets/image/waterdudv.jpg"),
+      require('../../../assets/image/waterdudv.jpg'),
       () => {
         animate({ scene, camera, renderer, refractor, clock });
       }
     );
     dudvMap.wrapS = dudvMap.wrapT = RepeatWrapping;
-    (refractor.material as any).uniforms["tDudv"].value = dudvMap;
+    (refractor.material as any).uniforms['tDudv'].value = dudvMap;
 
     // const ambientLight = new AmbientLight(0xffffff, 0.2);
     // scene.add(ambientLight);
@@ -114,25 +112,25 @@ const A001: React.FC = () => {
     const clock = new Clock();
 
     const renderer = new WebGLRenderer({ canvas: canvas, antialias: true });
-    renderer.setClearColor("#1d1d1d");
+    renderer.setClearColor('#1d1d1d');
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     renderer.render(scene, camera);
 
-    if (process.env.ENV === "dev") {
+    if (process.env.ENV === 'dev') {
       new OrbitControls(camera, renderer.domElement);
     }
 
     animate({ scene, camera, renderer, refractor, clock });
 
     window.addEventListener(
-      "resize",
+      'resize',
       () => handleResize({ camera, renderer }),
       false
     );
   };
   useEffect(() => {
-    return () => window.removeEventListener("resize", () => handleResize);
+    return () => window.removeEventListener('resize', () => handleResize);
   });
   return (
     <>
