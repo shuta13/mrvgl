@@ -6,7 +6,6 @@ import {
   TorusBufferGeometry,
   MeshStandardMaterial,
   Mesh,
-  AmbientLight,
   PointLight,
   PlaneBufferGeometry,
   Color,
@@ -15,7 +14,7 @@ import {
   Clock,
 } from 'three';
 import { OrbitControls, Refractor, WaterRefractionShader } from 'three-stdlib';
-const { GUI } = require('three/examples/jsm/libs/dat.gui.module');
+// import { useControls } from 'leva';
 
 interface HandleResizeParams {
   camera: PerspectiveCamera;
@@ -53,15 +52,30 @@ const animate = ({
   renderer.render(scene, camera);
 };
 
+// const Leva = () => {
+//   // init gui
+//   const { speed, factor } = useControls({
+//     speed: {
+//       value: 1,
+//       onChange: (value) => console.log(value),
+//     },
+//     factor: {
+//       value: 1,
+//       min: 10,
+//       max: 100
+//       ,
+//   });
+//   return (
+//     <div>
+//       {speed}, {factor}
+//     </div>
+//   );
+// };
+
 const A001: React.FC = () => {
   const onCanvasLoaded = (canvas: HTMLCanvasElement) => {
     if (!canvas) {
       return;
-    }
-
-    // init gui
-    if (process.env.ENV === 'dev') {
-      const gui = new GUI();
     }
 
     const scene = new Scene();
@@ -135,6 +149,7 @@ const A001: React.FC = () => {
   return (
     <>
       <div className="container">
+        {process.env.NODE_ENV === 'development' && <Leva />}
         <canvas className="canvas" ref={onCanvasLoaded}></canvas>
       </div>
     </>

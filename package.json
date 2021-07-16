@@ -23,6 +23,7 @@
     "@types/three": "^0.125.3",
     "@types/webfontloader": "^1.6.32",
     "dotenv": "^8.2.0",
+    "leva": "^0.9.13",
     "next-images": "^1.7.0",
     "prettier": "^2.2.1",
     "raw-loader": "^4.0.2",
