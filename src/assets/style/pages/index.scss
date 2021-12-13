@@ -1,7 +1,10 @@
+.ArchivesLinkWrapper {
+  margin-bottom: 1rem;
+}
+
 .ArchivesLink {
   text-decoration: none;
-  color: #ffffff80;
-  font-size: 8rem;
-  font-family: "Share Tech Mono";
-  letter-spacing: 0.2em;
+  color: var(--color-text-primary);
+  font-size: 6rem;
+  font-family: var(--font-family-secondary);
 }

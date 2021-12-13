@@ -38,11 +38,11 @@ export const Layout: React.FC<Props> = ({ children }) => {
             <div className="ExternalLinkWrap">
               <a
                 className="ExternalLink"
-                href="https://did0es.me"
+                href="https://github.com/shuta13"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer"
               >
-                Author
+                AUTHOR
               </a>
             </div>
           )}

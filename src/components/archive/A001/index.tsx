@@ -108,12 +108,9 @@ const A001: React.FC = () => {
     refractor.position.set(0, 0, 2.5);
     scene.add(refractor);
 
-    const dudvMap = new TextureLoader().load(
-      require('../../../assets/image/waterdudv.jpg'),
-      () => {
-        animate({ scene, camera, renderer, refractor, clock });
-      }
-    );
+    const dudvMap = new TextureLoader().load('/textures/waterdudv.jpg', () => {
+      animate({ scene, camera, renderer, refractor, clock });
+    });
     dudvMap.wrapS = dudvMap.wrapT = RepeatWrapping;
     (refractor.material as any).uniforms['tDudv'].value = dudvMap;
 

@@ -4,7 +4,7 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-} from "next/document";
+} from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -16,11 +16,6 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Song+Myung&family=Share+Tech+Mono&family=Sarpanch&display=swap"
-            rel="stylesheet"
-          ></link>
         </Head>
         <body>
           <Main />

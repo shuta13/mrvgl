@@ -24,7 +24,7 @@ const Home: React.FC = () => {
       <Layout>
         <ul>
           {ids.map((id) => (
-            <li key={id}>
+            <li key={id} className="ArchivesLinkWrapper">
               <Link href={`/archive/${id}`}>
                 <a className="ArchivesLink">{id}</a>
               </Link>

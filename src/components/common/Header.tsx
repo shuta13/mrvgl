@@ -1,10 +1,17 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import { SITE_NAME } from '@/configs/constants';
 
-export const Header: React.FC = () => {
+type Props = {
+  isDark?: boolean;
+};
+
+export const Header: React.FC<Props> = ({ isDark }) => {
   return (
     <Link href="/">
-      <a className="HeaderTitle">Maraviglia</a>
+      <a className={isDark ? 'HeaderTitleLight' : 'HeaderTitleDark'}>
+        {SITE_NAME}
+      </a>
     </Link>
   );
 };

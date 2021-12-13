@@ -56,8 +56,10 @@ export const Page: React.VFC<Props> = ({ meta, children }) => {
           property="og:image"
           content={image.startsWith('https://') ? image : `${SITE_URL}${image}`}
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          href="https://fonts.googleapis.com/css2?family=Almendra+Display&family=Chakra+Petch:wght@600&family=Share+Tech+Mono&family=Sarpanch&display=swap"
           rel="stylesheet"
         />
         <meta name="robots" content="noindex" />
