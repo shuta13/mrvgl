@@ -3,10 +3,10 @@
   background: transparent;
   bottom: 0;
   right: 0;
-  margin-right: 32px;
-  margin-bottom: 32px;
-  height: 24px;
-  height: 28px;
+  padding: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .link {
