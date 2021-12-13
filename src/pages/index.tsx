@@ -1,8 +1,9 @@
 import { Meta, Page } from '@/components/common/Page';
 import { Layout } from '@/components/common/Layout';
 import { Top } from '@/components/top/Top';
+import { NextPage } from 'next';
 
-const TopPage: React.FC = () => {
+const TopPage: NextPage = () => {
   const meta: Meta = {};
 
   return (
