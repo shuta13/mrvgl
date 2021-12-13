@@ -1,3 +1,4 @@
+import styles from './Layout.module.scss';
 import { useGetPathName } from '@/utils/hooks/useGetPathName';
 import { useEffect, useState } from 'react';
 import { Footer } from './Footer';
@@ -35,9 +36,9 @@ export const Layout: React.FC<Props> = ({ children }) => {
           {isArchives ? (
             <Footer pathData={pathData} archivesData={archivesData} />
           ) : (
-            <div className="ExternalLinkWrap">
+            <div className={styles.wrapper}>
               <a
-                className="ExternalLink"
+                className={styles.link}
                 href="https://github.com/shuta13"
                 target="_blank"
                 rel="noreferrer"

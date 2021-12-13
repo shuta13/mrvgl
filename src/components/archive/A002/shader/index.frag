@@ -91,7 +91,7 @@ float snoise(vec3 v) {
 
 void main() {
   vec2 uv = gl_FragCoord.xy / resolution;
-  vec3 color = vec3(.95);
+  vec3 color = vec3(.65);
   uv.x = snoise(vec3(uv.y - .2, uv.x - .2, time * .05)) * .8 + .5;
   // uv.y = snoise(vec3(uv.x - .2, uv.y - .2, time * .05)) * 1.5 + .5;
   color.r -= texture2D(texture, vec2(uv.x - .002, uv.y)).r;

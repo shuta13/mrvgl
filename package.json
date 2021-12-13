@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write './{components,pages}/**/*.{ts,tsx}'",
-    "cp": "cp -rf ./pages/archive/* ./pages/capture"
+    "tsm": "tsm \"src/components/**/*.module.scss\" --nameFormat none"
   },
   "dependencies": {
     "next": "11.1.3",
@@ -29,6 +29,7 @@
     "raw-loader": "^4.0.2",
     "react-dat-gui": "^4.0.3",
     "sass": "^1.32.8",
+    "typed-scss-modules": "^4.1.1",
     "typescript": "^4.2.2"
   }
 }

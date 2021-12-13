@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from 'react';
 import {
   Scene,
   OrthographicCamera,
@@ -8,7 +8,10 @@ import {
   Mesh,
   Clock,
   Vector2,
-} from "three";
+} from 'three';
+import { Layout } from '../common/Layout';
+import { Meta, Page } from '../common/Page';
+import styles from './Error.module.scss';
 
 type HandleResizeParams = {
   camera: OrthographicCamera;
@@ -22,8 +25,8 @@ type UpdateParams = {
   clock: Clock;
 };
 
-const vert = require("./shader/index.vert");
-const frag = require("./shader/index.frag");
+const vert = require('./shader/index.vert');
+const frag = require('./shader/index.frag');
 
 const _Error: React.FC<{ statusCode: number | undefined }> = ({
   statusCode,
@@ -65,11 +68,11 @@ const _Error: React.FC<{ statusCode: number | undefined }> = ({
     const geometry = new PlaneBufferGeometry(2, 2);
     const uniforms = {
       time: {
-        type: "f",
+        type: 'f',
         value: 0.0,
       },
       resolution: {
-        type: "v2",
+        type: 'v2',
         value: new Vector2(window.innerWidth, window.innerHeight),
       },
     };
@@ -89,18 +92,24 @@ const _Error: React.FC<{ statusCode: number | undefined }> = ({
     renderer.setClearColor(0x1d1d1d);
     renderer.setPixelRatio(window.devicePixelRatio);
     update({ scene, camera, renderer, uniforms, clock });
-    window.addEventListener("resize", () => handleResize({ camera, renderer }));
+    window.addEventListener('resize', () => handleResize({ camera, renderer }));
   };
 
   useEffect(() => {
-    return () => window.removeEventListener("resize", () => handleResize);
+    return () => window.removeEventListener('resize', () => handleResize);
   });
 
+  const meta: Meta = {
+    title: '404 - Not Found',
+  };
+
   return (
-    <>
-      <canvas className="canvas" ref={onCanvasLoaded}></canvas>
-      <div className="ErrorText">{statusCode} - Missed Archive</div>
-    </>
+    <Page meta={meta}>
+      <Layout>
+        <canvas className="canvas" ref={onCanvasLoaded}></canvas>
+        <div className={styles.text}>?</div>
+      </Layout>
+    </Page>
   );
 };
 

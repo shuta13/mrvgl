@@ -1,0 +1,17 @@
+.wrapper {
+  position: fixed;
+  background: transparent;
+  bottom: 0;
+  right: 0;
+  margin-right: 32px;
+  margin-bottom: 32px;
+  height: 24px;
+  height: 28px;
+}
+
+.link {
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 2rem;
+}

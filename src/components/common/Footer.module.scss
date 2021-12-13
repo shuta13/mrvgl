@@ -1,17 +1,18 @@
-.FooterWrap {
+.wrapper {
   position: fixed;
-  width: 256px;
-  height: 112px;
   background: transparent;
-  bottom: 32px;
-  right: 32px;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  padding: 4rem;
   display: flex;
   justify-content: left;
   align-content: flex-end;
   flex-wrap: wrap;
 }
 
-.FooterText {
+.info,
+.header {
   width: 100%;
   color: var(--color-text-primary);
   height: 28px;
@@ -23,11 +24,9 @@
   letter-spacing: var(--letter-space-secondary);
 }
 
-.FooterTextHeader {
-  @extend .FooterText;
+.header {
   font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 1rem;
   font-family: var(--font-family-primary);
   letter-spacing: var(--letter-space-secondary);
 }

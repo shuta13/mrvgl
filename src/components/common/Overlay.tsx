@@ -1,9 +1,9 @@
-import React from 'react';
+import styles from './Overlay.module.scss';
 
 const Overlay: React.FC = () => {
   return (
-    <div className="Overlay">
-      <div className="OverlayText">?</div>
+    <div className={styles.wrapper}>
+      <div className={styles.text}>?</div>
     </div>
   );
 };
