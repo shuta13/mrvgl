@@ -137,9 +137,7 @@ const A002: React.FC = () => {
   useEffect(() => {
     return () => window.removeEventListener('resize', () => handleResize);
   }, []);
-  return (
-    <div className="container">{active && <canvas ref={onCanvasLoaded} />}</div>
-  );
+  return <>{active && <canvas ref={onCanvasLoaded} />}</>;
 };
 
 export default A002;

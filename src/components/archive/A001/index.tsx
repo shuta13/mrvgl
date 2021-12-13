@@ -143,14 +143,7 @@ const A001: React.FC = () => {
   useEffect(() => {
     return () => window.removeEventListener('resize', () => handleResize);
   });
-  return (
-    <>
-      <div className="container">
-        {/* {process.env.NODE_ENV === 'development' && <Leva />} */}
-        <canvas className="canvas" ref={onCanvasLoaded}></canvas>
-      </div>
-    </>
-  );
+  return <canvas className="canvas" ref={onCanvasLoaded} />;
 };
 
 export default A001;
