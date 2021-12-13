@@ -10,8 +10,8 @@ export const Top: React.FC = () => {
         {archives
           .filter((archive) => archive.id !== '000')
           .map((archive) => (
-            <li key={archive.id} className={styles.list}>
-              <Link href={`/archive/${archive.id}`}>
+            <Link href={`/archive/${archive.id}`}>
+              <li key={archive.id} className={styles.list}>
                 <a
                   className={
                     parseInt(archive.id) % 2 === 1
@@ -29,8 +29,17 @@ export const Top: React.FC = () => {
                     height={945}
                   />
                 </a>
-              </Link>
-            </li>
+                <span
+                  className={
+                    parseInt(archive.id) % 2 === 1
+                      ? styles.number_right
+                      : styles.number_left
+                  }
+                >
+                  {archive.id}
+                </span>
+              </li>
+            </Link>
           ))}
       </div>
     </ul>

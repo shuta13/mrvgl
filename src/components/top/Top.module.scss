@@ -8,24 +8,44 @@
 }
 
 .list {
-  margin: 8rem 0;
+  position: relative;
+  margin: 16rem 0;
+  cursor: pointer;
 }
 
 .link_right,
 .link_left {
+  position: relative;
   text-decoration: none;
   color: var(--color-text-primary);
   font-size: 6rem;
-  font-family: var(--font-family-secondary);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.number_right,
+.number_left {
+  position: absolute;
+  top: -0.25em;
+  color: var(--color-text-primary);
+  font-size: 16rem;
+}
+
+.number_right {
+  // transform: rotate(90deg);
+  left: 0.25em;
+}
+
+.number_left {
+  // transform: rotate(-90deg);
+  right: 0.25em;
+}
+
 .link_right {
-  transform: translateX(40%);
+  transform: translateX(30%);
 }
 
 .link_left {
-  transform: translateX(-20%);
+  transform: translateX(-30%);
 }
