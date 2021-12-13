@@ -9,9 +9,7 @@ type Props = {
 export const Header: React.FC<Props> = ({ isDark }) => {
   return (
     <Link href="/">
-      <a className={isDark ? 'HeaderTitleLight' : 'HeaderTitleDark'}>
-        {SITE_NAME}
-      </a>
+      <a className="HeaderTitle">{SITE_NAME}</a>
     </Link>
   );
 };
