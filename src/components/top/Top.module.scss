@@ -17,7 +17,8 @@
 .link_left {
   position: relative;
   text-decoration: none;
-  color: var(--color-text-primary);
+  color: var(--color-cp-body);
+  // color: var(--color-text-primary);
   font-size: 6rem;
   display: flex;
   justify-content: center;
@@ -28,9 +29,9 @@
 .number_left {
   position: absolute;
   top: -0.25em;
-  color: var(--color-text-primary);
+  color: var(--color-cp-body);
+  // color: var(--color-text-primary);
   font-size: 24rem;
-  // color: var(--color-cp-body);
 }
 
 .number_right {
