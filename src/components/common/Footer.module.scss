@@ -14,8 +14,8 @@
 .info,
 .header {
   width: 100%;
-  // color: var(--color-cp-body);
-  color: var(--color-text-primary);
+  color: var(--color-cp-body);
+  // color: var(--color-text-primary);
   height: 28px;
   display: flex;
   justify-content: flex-end;
@@ -27,7 +27,7 @@
 
 .header {
   font-size: 4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   color: var(--color-cp-body);
   font-family: var(--font-family-primary);
   letter-spacing: var(--letter-space-secondary);
