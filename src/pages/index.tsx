@@ -1,7 +1,9 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
-import archives from "../store/data/archives.json";
+import archives from '@/store/data/archives.json';
+import { Meta, Page } from '@/components/common/Page';
+import { Layout } from '@/components/common/Layout';
 
 const ids: Array<string> = [];
 for (let i = 0; i < archives.length; i++) {
@@ -15,18 +17,22 @@ for (let i = 0; i < archives.length; i++) {
 }
 
 const Home: React.FC = () => {
+  const meta: Meta = {};
+
   return (
-    <div className="container">
-      <ul>
-        {ids.map((id) => (
-          <li key={id}>
-            <Link href={`/archive/${id}`}>
-              <a className="ArchivesLink">{id}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Page meta={meta}>
+      <Layout>
+        <ul>
+          {ids.map((id) => (
+            <li key={id}>
+              <Link href={`/archive/${id}`}>
+                <a className="ArchivesLink">{id}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Layout>
+    </Page>
   );
 };
 

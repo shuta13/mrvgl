@@ -1,16 +1,21 @@
-import React from 'react';
-import Head from 'next/head';
 import A005 from '@/components/archive/A005';
+import { Meta, Page } from '@/components/common/Page';
+import { SITE_NAME } from '@/configs/constants';
+import { Layout } from '@/components/common/Layout';
+import { NextPage } from 'next';
 
-const Page005: React.FC = () => {
+const Page005: NextPage = () => {
+  const meta: Meta = {
+    title: `${SITE_NAME} - 005`,
+    image: '/og-images/005.png',
+  };
+
   return (
-    <>
-      <Head>
-        <meta property="og:description" content="Maraviglia" />
-        <meta property="og:image" content="/og-images/005.png" />
-      </Head>
-      <A005 />
-    </>
+    <Page meta={meta}>
+      <Layout>
+        <A005 />
+      </Layout>
+    </Page>
   );
 };
 

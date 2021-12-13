@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   CanvasTexture,
   Clock,
@@ -11,57 +11,59 @@ import {
   TextureLoader,
   Vector2,
   WebGLRenderer,
-} from "three";
-import WebFontLoader from "webfontloader";
+} from 'three';
 import {
   CreateTextureParams,
   HandleResizeParams,
   UpdateParams,
-} from "../../../shared/model";
+} from '@/utils/model';
 
-const vert = require("../A003/shader/index.vert");
-const frag = require("../A003/shader/index.frag");
+const vert = require('../A003/shader/index.vert');
+const frag = require('../A003/shader/index.frag');
 
 const A003: React.FC = () => {
   const [active, setActive] = useState(false);
-  WebFontLoader.load({
-    google: {
-      families: ["Josefin Sans"],
-    },
-    active: () => setActive(true),
-  });
+  useEffect(() => {
+    const WebFontLoader = require('webfontloader');
+    WebFontLoader.load({
+      google: {
+        families: ['Josefin Sans'],
+      },
+      active: () => setActive(true),
+    });
+  }, []);
 
   let animationFrameId = 0;
   let isNeedsStopUpdate = false;
 
   const createTexture = (params: CreateTextureParams) => {
     const { textureWidth, textureHeight, dpr } = params;
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     const canvasWidth = textureWidth * dpr;
     const canvasHeight = textureHeight * dpr;
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
     if (context !== null) {
       context.font = `bold italic ${232 * dpr}px Josefin Sans`;
 
       // back
-      context.fillStyle = "#1a1a1a";
-      context.fillText("VAGUE", canvasWidth * 0.2, canvasHeight * 0.2);
-      context.fillStyle = "#444444";
-      context.fillText("VAGUE", canvasWidth * 0.15, canvasHeight * 0.4);
+      context.fillStyle = '#1a1a1a';
+      context.fillText('VAGUE', canvasWidth * 0.2, canvasHeight * 0.2);
+      context.fillStyle = '#444444';
+      context.fillText('VAGUE', canvasWidth * 0.15, canvasHeight * 0.4);
 
       // center
       // context.textAlign = "center";
       // context.textBaseline = "middle";
-      context.fillStyle = "#999999";
-      context.fillText("VAGUE", canvasWidth * 0.1, canvasHeight * 0.6);
+      context.fillStyle = '#999999';
+      context.fillText('VAGUE', canvasWidth * 0.1, canvasHeight * 0.6);
 
       // front
-      context.fillStyle = "#cccccc";
-      context.fillText("VAGUE", canvasWidth * 0.05, canvasHeight * 0.8);
-      context.fillStyle = "#ffffff";
-      context.fillText("VAGUE", 0, canvasHeight * 1);
+      context.fillStyle = '#cccccc';
+      context.fillText('VAGUE', canvasWidth * 0.05, canvasHeight * 0.8);
+      context.fillStyle = '#ffffff';
+      context.fillText('VAGUE', 0, canvasHeight * 1);
 
       const texture = new CanvasTexture(canvas);
       texture.needsUpdate = false;
@@ -106,7 +108,7 @@ const A003: React.FC = () => {
   useEffect(() => {
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", () => handleResize);
+      window.removeEventListener('resize', () => handleResize);
     };
   }, []);
 
@@ -128,15 +130,15 @@ const A003: React.FC = () => {
 
     const uniforms = {
       time: {
-        type: "f",
+        type: 'f',
         value: 0.0,
       },
       resolution: {
-        type: "v2",
+        type: 'v2',
         value: new Vector2(width * dpr, height * dpr),
       },
       texture: {
-        type: "t",
+        type: 't',
         value:
           createTexture({ textureWidth: 1024, textureHeight: 1024, dpr }) ??
           null,
@@ -189,7 +191,7 @@ const A003: React.FC = () => {
 
     update({ scene, camera, renderer, uniforms, clock });
 
-    window.addEventListener("resize", () =>
+    window.addEventListener('resize', () =>
       handleResize({ scene, camera, renderer, uniforms })
     );
 

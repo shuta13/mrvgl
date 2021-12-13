@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   CanvasTexture,
   Clock,
@@ -9,25 +9,27 @@ import {
   Scene,
   Vector2,
   WebGLRenderer,
-} from "three";
+} from 'three';
 import {
   CreateTextureParams,
   HandleResizeParams,
   UpdateParams,
-} from "../../../shared/model";
-import WebFontLoader from "webfontloader";
+} from '../../../utils/model';
 
-const vertGauss = require("./shader/gauss.vert");
-const fragGauss = require("./shader/gauss.frag");
+const vertGauss = require('./shader/gauss.vert');
+const fragGauss = require('./shader/gauss.frag');
 
 const A004: React.FC = () => {
   const [active, setActive] = useState(false);
-  WebFontLoader.load({
-    google: {
-      families: ["Text Me One", "Astloch"],
-    },
-    active: () => setActive(true),
-  });
+  useEffect(() => {
+    const WebFontLoader = require('webfontloader');
+    WebFontLoader.load({
+      google: {
+        families: ['Text Me One', 'Astloch'],
+      },
+      active: () => setActive(true),
+    });
+  }, []);
 
   let animationFrameId = 0;
   let isNeedsStopUpdate = false;
@@ -37,23 +39,23 @@ const A004: React.FC = () => {
   const createTexture = (params: CreateTextureParams) => {
     const { textureWidth, textureHeight, dpr } = params;
 
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     const canvasWidth = textureWidth * dpr;
     const canvasHeight = textureHeight * dpr;
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
     if (context !== null) {
-      context.textAlign = "center";
+      context.textAlign = 'center';
       // context.textBaseline = "middle";
 
       context.font = `bold italic ${160 * dpr}px Astloch`;
-      context.fillStyle = "#69e5ff"; // 青
-      context.fillText("Happy New Year", canvasWidth * 0.5, canvasHeight * 0.3);
+      context.fillStyle = '#69e5ff'; // 青
+      context.fillText('Happy New Year', canvasWidth * 0.5, canvasHeight * 0.3);
 
       context.font = `${540 * dpr}px Text Me One`;
-      context.fillStyle = "#e36bee"; // ピンク
-      context.fillText("2021", canvasWidth * 0.5, canvasHeight * 0.75);
+      context.fillStyle = '#e36bee'; // ピンク
+      context.fillText('2021', canvasWidth * 0.5, canvasHeight * 0.75);
     }
     const texture = new CanvasTexture(canvas);
     texture.needsUpdate = true;
@@ -82,7 +84,7 @@ const A004: React.FC = () => {
 
   useEffect(() => {
     return () => {
-      window.removeEventListener("resize", () => handleResize);
+      window.removeEventListener('resize', () => handleResize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -148,31 +150,31 @@ const A004: React.FC = () => {
 
     const uniforms = {
       time: {
-        type: "f",
+        type: 'f',
         value: 0.0,
       },
       texture: {
-        type: "t",
+        type: 't',
         value: createTexture({ textureHeight: 1024, textureWidth: 2048, dpr }),
       },
       offsetHorizontal: {
-        type: "v2v",
+        type: 'v2v',
         value: offset.vector2Horizontal,
       },
       offsetVertical: {
-        type: "v2v",
+        type: 'v2v',
         value: offset.vector2Vertical,
       },
       weightHorizontal: {
-        type: "fv1",
+        type: 'fv1',
         value: weight.horizontal,
       },
       weightVertical: {
-        type: "fv1",
+        type: 'fv1',
         value: weight.vertical,
       },
       isVertical: {
-        type: "b",
+        type: 'b',
         value: false,
       },
     };
@@ -200,7 +202,7 @@ const A004: React.FC = () => {
 
     update({ scene, camera, renderer, uniforms, clock });
 
-    window.addEventListener("resize", () =>
+    window.addEventListener('resize', () =>
       handleResize({ scene, camera, renderer, uniforms })
     );
   };

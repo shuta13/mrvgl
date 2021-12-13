@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Scene,
   OrthographicCamera,
@@ -9,25 +9,27 @@ import {
   Vector2,
   Clock,
   CanvasTexture,
-} from "three";
-import WebFontLoader from "webfontloader";
+} from 'three';
 import {
   CreateTextureParams,
   HandleResizeParams,
   UpdateParams,
-} from "../../../shared/model";
+} from '@/utils/model';
 
-const baseVert = require("./shader/index.vert");
-const baseFrag = require("./shader/index.frag");
+const baseVert = require('./shader/index.vert');
+const baseFrag = require('./shader/index.frag');
 
 const A002: React.FC = () => {
   const [active, setActive] = useState(false);
-  WebFontLoader.load({
-    google: {
-      families: ["EB Garamond"],
-    },
-    active: () => setActive(true),
-  });
+  useEffect(() => {
+    const WebFontLoader = require('webfontloader');
+    WebFontLoader.load({
+      google: {
+        families: ['EB Garamond'],
+      },
+      active: () => setActive(true),
+    });
+  }, []);
 
   let isNeedsStopUpdate = false;
 
@@ -36,21 +38,21 @@ const A002: React.FC = () => {
     textureHeight,
     dpr,
   }: CreateTextureParams) => {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     const canvasWidth = textureWidth * dpr;
     const canvasHeight = textureHeight * dpr;
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
     if (context !== null) {
       context.font = `${128 * dpr}px EB Garamond`;
-      context.textAlign = "center";
-      context.textBaseline = "middle";
-      context.fillStyle = "#ffffff";
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillStyle = '#ffffff';
       for (let j = 0; j < 3; j++) {
         for (let i = 0; i < 8; i++) {
           context.fillText(
-            "I Know You",
+            'I Know You',
             j * canvasWidth * 0.75,
             i * (canvasHeight / 6)
           );
@@ -99,15 +101,15 @@ const A002: React.FC = () => {
     const baseTexture = createTexture({ textureWidth, textureHeight, dpr });
     const uniforms = {
       time: {
-        type: "f",
+        type: 'f',
         value: 0.0,
       },
       resolution: {
-        type: "v2",
+        type: 'v2',
         value: new Vector2(window.innerWidth * dpr, window.innerHeight * dpr),
       },
       texture: {
-        type: "t",
+        type: 't',
         value: baseTexture ?? null,
       },
     };
@@ -128,12 +130,12 @@ const A002: React.FC = () => {
     renderer.setPixelRatio(dpr);
     renderer.setSize(window.innerWidth, window.innerHeight);
     update({ scene, camera, renderer, uniforms, clock });
-    window.addEventListener("resize", () =>
+    window.addEventListener('resize', () =>
       handleResize({ scene, camera, renderer, uniforms })
     );
   };
   useEffect(() => {
-    return () => window.removeEventListener("resize", () => handleResize);
+    return () => window.removeEventListener('resize', () => handleResize);
   }, []);
   return (
     <div className="container">{active && <canvas ref={onCanvasLoaded} />}</div>
