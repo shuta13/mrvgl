@@ -1,7 +1,14 @@
 :root {
+  // mono
   --color-bg-primary: #000000;
   --color-text-primary: #ffffff;
   --color-text-secondary: #000000;
+  // cyberpunk, ref.https://blog.depositphotos.com/15-cyberpunk-color-palettes-for-dystopian-designs.html
+  --color-cp-primary: #fe00fe;
+  --color-cp-secondary: #7700a6;
+  --color-cp-body: #defe47;
+  --color-cp-accent-primary: #00b3fe;
+  --color-cp-accent-secondary: #0016ee;
   --font-family-primary: 'Chakra Petch', serif;
   --font-family-secondary: 'Share Tech Mono', serif;
   --letter-space-primary: 1.5rem;
