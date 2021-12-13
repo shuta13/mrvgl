@@ -99,17 +99,11 @@ const _Error: React.FC<{ statusCode: number | undefined }> = ({
     return () => window.removeEventListener('resize', () => handleResize);
   });
 
-  const meta: Meta = {
-    title: '404 - Not Found',
-  };
-
   return (
-    <Page meta={meta}>
-      <Layout>
-        <canvas className="canvas" ref={onCanvasLoaded}></canvas>
-        <div className={styles.text}>?</div>
-      </Layout>
-    </Page>
+    <div className={styles.wrapper}>
+      <canvas className="canvas" ref={onCanvasLoaded}></canvas>
+      <div className={styles.text}>?</div>
+    </div>
   );
 };
 

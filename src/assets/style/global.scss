@@ -1,5 +1,3 @@
-@import './pages/index.scss';
-
 :root {
   --color-bg-primary: #000000;
   --color-text-primary: #ffffff;
@@ -8,6 +6,10 @@
   --font-family-secondary: 'Share Tech Mono', serif;
   --letter-space-primary: 1.5rem;
   --letter-space-secondary: 1rem;
+}
+
+#__next {
+  height: 100%;
 }
 
 html,
@@ -34,8 +36,6 @@ body {
 }
 
 .container {
-  position: fixed;
-  overflow: hidden;
   width: 100%;
   height: 100%;
   display: flex;
@@ -51,6 +51,8 @@ body {
   width: 100%;
   height: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
 }
 
 li {

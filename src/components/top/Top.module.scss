@@ -1,10 +1,31 @@
 .wrapper {
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-x: hidden;
+  padding: 8rem 0;
 }
 
-.link {
+.list {
+  margin: 8rem 0;
+}
+
+.link_right,
+.link_left {
   text-decoration: none;
   color: var(--color-text-primary);
   font-size: 6rem;
   font-family: var(--font-family-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link_right {
+  transform: translateX(40%);
+}
+
+.link_left {
+  transform: translateX(-20%);
 }
